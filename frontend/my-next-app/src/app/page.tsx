@@ -21,7 +21,9 @@ export default function Home() {
         </nav>
 
         <div className="header-buttons">
-          <button className="donate-button">DOE AGORA</button>
+          <button className="donate-button"
+           onClick={() => router.push("/Doacoes")}
+            >DOE AGORA</button>
         </div>
       </header>
 
