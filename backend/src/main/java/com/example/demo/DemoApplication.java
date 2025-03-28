@@ -1,6 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.model.Usuario;
+import com.example.demo.model.*;
+import com.example.demo.repository.ImigranteRepository;
 import com.example.demo.repository.UsuarioRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,12 +15,15 @@ public class DemoApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(UsuarioRepository usuarioRepository) {
+	CommandLineRunner init(UsuarioRepository usuarioRepository, ImigranteRepository imigranteRepository) {
 		return args -> {
 			// Cria e salva um usuário de teste
 			Usuario usuario = new Usuario("João Silva", "joao@email.com", "123456");
+			Imigrante imigrante = new Imigrante("Pedro", "aremenio", "masc", "aser");
+			imigranteRepository.save(imigrante);
 			usuarioRepository.save(usuario);
 
+			System.out.println("IMigrate salvo: " + imigrante.getNome());
 			System.out.println("Usuário salvo: " + usuario.getNome());
 		};
 	}
