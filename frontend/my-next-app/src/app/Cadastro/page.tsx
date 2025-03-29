@@ -36,6 +36,11 @@ export default function CadastroPage() {
         }),
       });
 
+      if (response.status === 400) {
+        setError("Este e-mail já está cadastrado. Por favor, use outro e-mail.");
+        return;
+      }
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
