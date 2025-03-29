@@ -4,6 +4,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -38,7 +40,7 @@ public class Usuario {
     private String enderecoCompleto;
 
     @Field("quartos_disponiveis")
-    private int quartosDisponiveis;
+    private Integer quartosDisponiveis;
 
     @Field("banheiros")
     private int banheiros;
@@ -73,13 +75,16 @@ public class Usuario {
     @Field("idiomas_falados")
     private List<String> idiomasFalados = new ArrayList<>();
 
+    @Field("aprovado")
+    private boolean aprovado = false;
+
     public Usuario(String nomeCompleto, String email, String telefone, String cpf,
                    String tipoMoradia, String tempoResidencia, String enderecoCompleto,
                    int quartosDisponiveis, int banheiros, String rendaFamiliar,
                    int pessoasDependentes, boolean aceitaVisitas,
                    boolean disponibilidadeTreinamento, String periodoMinimoAcolhimento,
                    String antecedentesCriminais, String motivacao,
-                   String experienciaPrevia, List<String> idiomasFalados) {
+                   String experienciaPrevia, List<String> idiomasFalados, boolean aprovado) {
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.telefone = telefone;
@@ -98,5 +103,6 @@ public class Usuario {
         this.motivacao = motivacao;
         this.experienciaPrevia = experienciaPrevia;
         this.idiomasFalados = idiomasFalados != null ? idiomasFalados : new ArrayList<>();
+        this.aprovado = aprovado;
     }
 }

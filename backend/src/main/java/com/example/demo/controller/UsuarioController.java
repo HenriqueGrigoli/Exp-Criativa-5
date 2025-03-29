@@ -16,7 +16,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.UUID;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -89,4 +91,32 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 }
+
+    @GetMapping
+        public ResponseEntity<List<Usuario>> listarTodosUsuarios() {
+            List<Usuario> usuarios = repository.findAll();
+            return ResponseEntity.ok(usuarios);
+        }
+
+
+    @PatchMapping("/{id}/aprovar")
+    public ResponseEntity<Usuario> aprovarUsuario(@PathVariable String id) {
+        Optional<Usuario> usuarioOptional = repository.findById(id);
+        if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            usuario.setAprovado(true);
+            repository.save(usuario);
+            return ResponseEntity.ok(usuario);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}/rejeitar")
+    public ResponseEntity<Void> rejeitarUsuario(@PathVariable String id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
