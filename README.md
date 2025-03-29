@@ -22,25 +22,38 @@ Spring Boot
 MongoDB
 Java
 
-🚀 Funcionalidades Principais
-Cadastro em Etapas
+🚀 Funcionalidades Principais:
+
+Cadastro em Etapas:
+
 ✔️ Formulário multi-step intuitivo
+
 ✔️ Validação em tempo real
+
 ✔️ Progresso visual
+
 ✔️ Algoritmo de compatiblidade/busca
 
-Gerenciamento de Documentos
+
+Gerenciamento de Documentos:
+
 📁 Upload seguro de arquivos (PDF, imagens)
+
 🛡️ Validação de tipo e tamanho (até 50MB)
+
 🔗 Links de download protegidos
 
-Backend Eficiente
+Backend Eficiente:
+
 ⚡ API RESTful otimizada
+
 🧊 Armazenamento em MongoDB
+
 📊 Tratamento robusto de erros
 
 
 🧑‍💻 Como Executar
+
 Backend:
 
 cd backend
