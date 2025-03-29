@@ -11,7 +11,8 @@ Backend: SpringBoot com MongoDB
 
 Estilo: CSS modular e responsivo
 
-🛠️ Tecnologias Utilizadas
+🛠️ Tecnologias Utilizadas:
+
 Frontend
 Next.js
 React
