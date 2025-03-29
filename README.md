@@ -1,7 +1,8 @@
 📝 Projeto IRIS - Documentação
 Desenvolvido por Bernardo Jakubiak, Henrique Grigoli e Danilo Gabriel
 
-🌟 Visão Geral
+🌟 Visão Geral:
+
 Este projeto consiste em um sistema completo para cadastro de famílias acolhedoras e pessoas imigrantes, junto com um sistema de busca de emprego, desenvolvido com:
 
 Frontend: Next.js/React
