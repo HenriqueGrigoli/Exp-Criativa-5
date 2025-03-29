@@ -13,14 +13,5 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner init(UsuarioRepository usuarioRepository) {
-		return args -> {
-			// Cria e salva um usuário de teste
-			Usuario usuario = new Usuario("João Silva", "joao@email.com", "123456");
-			usuarioRepository.save(usuario);
 
-			System.out.println("Usuário salvo: " + usuario.getNome());
-		};
-	}
 }

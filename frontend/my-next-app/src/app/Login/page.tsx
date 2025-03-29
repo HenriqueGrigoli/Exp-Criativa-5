@@ -56,7 +56,7 @@ export default function LoginPage() {
 
         <div className="links">
           <a href="/forgot-password">Esqueci minha senha</a>
-          <a href="/register">Cadastre-se</a>
+          <a href="/Cadastro">Cadastre-se</a>
         </div>
       </div>
     </div>
