@@ -31,7 +31,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-image">
-            <img src="/Refugiado.jpg" alt="Refugiados em abrigo" />
+            <img src="imigrantes.jpeg" alt="Refugiados em abrigo" />
           </div>
         </section>
       </div>
