@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import "../header.css";
+import { useRouter } from 'next/navigation';
+
 
 export default function Header() {
+  const router = useRouter();
   return (
     <header className="header">
       <div className="iris-container">
@@ -18,8 +21,10 @@ export default function Header() {
       </nav>
 
       <div className="header-buttons">
-        <button className="donate-button">DOE AGORA</button>
-      </div>
+          <button className="donate-button"
+           onClick={() => router.push("/Doacoes")}
+            >DOE AGORA</button>
+        </div>
     </header>
   );
 }
