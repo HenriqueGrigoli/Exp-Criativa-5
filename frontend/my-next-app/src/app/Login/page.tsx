@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import "./login.css";  // Caminho relativo dentro da pasta login
+import Layout from "../Componentes/layout";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function LoginPage() {
   };
 
   return (
+  <Layout>
     <div className="login-container">
       <div className="login-box">
         <h2>Login</h2>
@@ -56,9 +58,10 @@ export default function LoginPage() {
 
         <div className="links">
           <a href="/forgot-password">Esqueci minha senha</a>
-          <a href="/register">Cadastre-se</a>
+          <a href="/Cadastro">Cadastre-se</a>
         </div>
       </div>
     </div>
+  </Layout>
   );
 }
