@@ -5,7 +5,6 @@ import Image from "next/image";
 import "../header.css";
 import { useRouter } from 'next/navigation';
 
-
 export default function Header() {
   const router = useRouter();
   return (
@@ -48,15 +47,16 @@ export default function Header() {
           </Link>
         </nav>
         
-        
         {/* Botão de doação com espaçamento */}
         <div className="ml-4"> {/* Adicionei margem à esquerda */}
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-colors" onClick={() => router.push("/Doacoes")>
+          <button 
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-colors" 
+            onClick={() => router.push("/Doacoes")}
+          >
             DOE AGORA
           </button>
         </div>
       </div>
-
     </header>
   );
 }
