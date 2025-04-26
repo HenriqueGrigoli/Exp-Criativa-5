@@ -8,9 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "dependencies": {
-    "@next/font": "^14.2.15",
-    "next": "^15.2.2",
+  "dependencies": { "axios": "^1.8.4",
+    "next": "^15.2.4",
+    "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

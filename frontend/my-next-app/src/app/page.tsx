@@ -7,7 +7,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <Layout>
+<Layout>
       <div className="home-container">
         {/* Hero Section */}
         <section className="hero">
