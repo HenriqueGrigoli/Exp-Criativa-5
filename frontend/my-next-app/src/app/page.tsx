@@ -24,7 +24,10 @@ export default function Home() {
                   garantindo que a ajuda chegue a quem mais precisa.
                 </p>
                 <div className="flex gap-5">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 uppercase transition duration-300">
+                  <button 
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 uppercase transition duration-300"
+                    onClick={() => router.push("/SobreIris")}
+                  >
                     SAIBA MAIS
                   </button>
                   <button 

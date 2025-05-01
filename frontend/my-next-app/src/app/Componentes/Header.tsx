@@ -11,7 +11,7 @@ export default function Header() {
         {/* Logo ampliada */}
         <div className="flex items-center">
           <Link href="/" passHref>
-            <div className="relative h-16 w-48 hover:opacity-90 transition-opacity"> {/* Aumentei o tamanho do container */}
+            <div className="relative h-16 w-48 hover:opacity-90 transition-opacity">
               <Image
                 src="/logo_iris_somente_logo.png"
                 alt="Logo IRIS"
@@ -27,7 +27,7 @@ export default function Header() {
         {/* Menu de navegação centralizado e ampliado */}
         <nav className="hidden md:flex space-x-8 mx-8">
           <Link 
-            href="/sobre" 
+            href="/SobreIris"  // ✅ Corrigido aqui!
             className="text-white-800 hover:text-gray-900 font-semibold text-lg transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600"
           >
             Sobre a IRIS
