@@ -1,58 +1,78 @@
-'use client';
+export async function POST(request) {
+  const { valor } = await request.json();
 
-import { useState } from 'react';
+  // Validação do valor (fallback para 10 reais caso não venha valor válido)
+  const valorReais = parseFloat(valor);
+  const valorCentavos = isNaN(valorReais) || valorReais <= 0
+    ? 1000 // fallback: R$10,00
+    : Math.round(valorReais * 100);
 
-export default function Doacoes() {
-  const [loading, setLoading] = useState(false);
-
-  async function gerarBoleto() {
-    setLoading(true);
-
-    try {
-      const response = await fetch('/api/gerarboleto', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          // Preencha com seus dados reais para gerar boleto
-          nome: 'Nome do doador',
-          email: 'email@exemplo.com',
-          cpf: '12345678909',
-          telefone: '(11) 99999-9999',
-          rua: 'Rua Exemplo',
-          numero: '123',
-          complemento: 'Apto 1',
-          bairro: 'Centro',
-          cidade: 'São Paulo',
-          estado: 'SP',
-          cep: '01001-000',
-        }),
-      });
-
-      const data = await response.json();
-
-      // Aqui está o ajuste principal:
-      const urlSlip = data.create_request?.url_slip;
-
-      if (!urlSlip) {
-        alert(`Erro ao gerar boleto: ${JSON.stringify(data)}`);
-        console.error('Erro ao gerar boleto:', data);
-        return;
+  const payload = {
+    apiKey: "apk_44561885-DGmmViOUtDshThlWlmMINikxjodgqocp",
+    order_id: `doacao-${Date.now()}`,
+    payer_email: "anonimo@doacao.com",
+    payer_name: "Doador Anônimo",
+    payer_cpf_cnpj: "00000000191",
+    payer_phone: "11999999999",
+    payer_street: "Rua Desconhecida",
+    payer_number: "0",
+    payer_complement: "",
+    payer_district: "Centro",
+    payer_city: "São Paulo",
+    payer_state: "SP",
+    payer_zip_code: "01001000",
+    notification_url: "https://seusite.com/notification/paghiper/",
+    type_bank_slip: "boletoA4",
+    days_due_date: "3",
+    fixed_description: true,
+    late_payment_fine: "2",
+    per_day_interest: true,
+    items: [
+      {
+        description: "Doação Anônima",
+        quantity: "1",
+        item_id: "1",
+        price_cents: `${valorCentavos}`
       }
+    ]
+  };
 
-      window.open(urlSlip, '_blank');
-    } catch (error) {
-      console.error('Erro inesperado:', error);
-      alert('Erro inesperado ao gerar o boleto.');
-    } finally {
-      setLoading(false);
+  try {
+    const response = await fetch("https://api.paghiper.com/transaction/create/", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Accept-Charset": "UTF-8",
+        "Accept-Encoding": "application/json",
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+    console.log("Resposta do PagHiper:", data);
+
+    if (response.status === 201 && data.create_request?.result === "success") {
+      return new Response(JSON.stringify({
+        url_slip: data.create_request.bank_slip.url_slip,
+        digitable_line: data.create_request.bank_slip.digitable_line,
+        transaction_id: data.create_request.transaction_id
+      }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" }
+      });
+    } else {
+      console.error("Erro ao gerar boleto:", data);
+      return new Response(JSON.stringify({ error: data }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" }
+      });
     }
+  } catch (error) {
+    console.error("Erro interno:", error);
+    return new Response(JSON.stringify({ error: "Erro interno no servidor" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" }
+    });
   }
-
-  return (
-    <div>
-      <button onClick={gerarBoleto} disabled={loading}>
-        {loading ? 'Gerando boleto...' : 'Gerar Boleto'}
-      </button>
-    </div>
-  );
 }

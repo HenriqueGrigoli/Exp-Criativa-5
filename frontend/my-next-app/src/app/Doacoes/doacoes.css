@@ -1,21 +1,10 @@
-.container-doacoes {
-    background-color: #ffffff; /* fundo branco */
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* centraliza horizontalmente */
-    justify-content: center; /* centraliza verticalmente */
-    text-align: center;
-  }
-  
-  .container-doacoes h1 {
-    margin-bottom: 10px;
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .container-doacoes p {
-    margin-bottom: 20px;
-    color: #555;
-  }
-  
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
