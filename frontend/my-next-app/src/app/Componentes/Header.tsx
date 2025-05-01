@@ -1,56 +1,55 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import "../header.css";
 import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const router = useRouter();
   return (
-    <header className="bg-indigo-200 shadow-sm">
-      <div className="container mx-auto px-4 py-3 flex items-center">
-        {/* Logo como imagem - FORMA CORRETA */}
-        <div className="mr-4 flex items-center">
+    <header className="bg-blue-700">
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo ampliada */}
+        <div className="flex items-center">
           <Link href="/" passHref>
-            <div className="relative h-10 w-32"> {/* Container com tamanho definido */}
+            <div className="relative h-16 w-48 hover:opacity-90 transition-opacity"> {/* Aumentei o tamanho do container */}
               <Image
-                src="/logo_iris.png" // Caminho na pasta public
+                src="/logo_iris.png"
                 alt="Logo IRIS"
-                fill // Preenche o container pai
-                style={{ objectFit: 'contain' }} // Mantém proporção
+                fill
+                style={{ objectFit: 'contain' }}
                 priority
+                sizes="(max-width: 768px) 100px, 192px"
               />
             </div>
           </Link>
         </div>
 
-        {/* Menu de navegação */}
-        <nav className="hidden md:flex space-x-6 mx-6"> {/* Adicionei margem horizontal */}
+        {/* Menu de navegação centralizado e ampliado */}
+        <nav className="hidden md:flex space-x-8 mx-8">
           <Link 
             href="/sobre" 
-            className="text-blue-700 hover:text-blue-900 font-medium transition-colors"
+            className="text-white-800 hover:text-gray-900 font-semibold text-lg transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600"
           >
             Sobre a IRIS
           </Link>
           <Link 
             href="/atuacao" 
-            className="text-blue-700 hover:text-blue-900 font-medium transition-colors"
+            className="text-white-800 hover:text-gray-900 font-semibold text-lg transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600"
           >
             O que fazemos
           </Link>
           <Link 
             href="/ajuda" 
-            className="text-blue-700 hover:text-blue-900 font-medium transition-colors"
+            className="text-white-800 hover:text-gray-900 font-semibold text-lg transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600"
           >
             Ajude os refugiados
           </Link>
         </nav>
         
-        {/* Botão de doação com espaçamento */}
-        <div className="ml-4"> {/* Adicionei margem à esquerda */}
+        {/* Botão de doação mais destacado */}
+        <div className="ml-4">
           <button 
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-colors" 
+            className="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all transform hover:scale-105"
             onClick={() => router.push("/Doacoes")}
           >
             DOE AGORA
