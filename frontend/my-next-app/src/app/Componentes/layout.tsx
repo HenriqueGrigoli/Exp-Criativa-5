@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import Header from "./Header";
+import Footer from "./Footer"; // Import the Footer component
 import "../globals.css";
 
 interface LayoutProps {
@@ -10,9 +11,10 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="app-container">
+    <div className="app-container flex flex-col min-h-screen">
       <Header />
-      <main>{children}</main>
+      <main className="flex-grow">{children}</main>
+      <Footer />
     </div>
   );
 }
