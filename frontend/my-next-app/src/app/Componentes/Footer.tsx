@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
                 <Link href="/">
                 <div className="relative h-20 w-60"> {/* Increased from h-12 w-32 */}
                     <Image 
-                    src="/logo_iris.png" 
+                    src="/logo_iris_somente_logo.png" 
                     alt="IRIS Logo" 
                     fill
                     style={{ objectFit: 'contain' }}

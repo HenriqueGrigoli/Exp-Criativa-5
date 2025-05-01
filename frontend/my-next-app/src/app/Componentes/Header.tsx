@@ -13,7 +13,7 @@ export default function Header() {
           <Link href="/" passHref>
             <div className="relative h-16 w-48 hover:opacity-90 transition-opacity"> {/* Aumentei o tamanho do container */}
               <Image
-                src="/logo_iris.png"
+                src="/logo_iris_somente_logo.png"
                 alt="Logo IRIS"
                 fill
                 style={{ objectFit: 'contain' }}
