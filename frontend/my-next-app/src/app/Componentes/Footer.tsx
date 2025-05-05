@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
             <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">COMO AJUDAR</h3>
             <ul className="space-y-3">
               <FooterLink href="/doacoes" text="Doações" />
-              <FooterLink href="/voluntariado" text="Voluntariado" />
+              <FooterLink href="/Cadastro" text="Voluntariado" />
               <FooterLink href="/empresas" text="Empresas" />
               <FooterLink href="/campanhas" text="Campanhas" />
             </ul>

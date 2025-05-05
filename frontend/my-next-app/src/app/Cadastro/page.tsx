@@ -11,24 +11,24 @@ interface FormData {
   email: string;
   telefone: string;
   cpf: string;
-  
+
   // Informações residenciais
   tipoMoradia: "própria" | "alugada" | "cedida";
   tempoResidencia: string;
   enderecoCompleto: string;
   quartosDisponiveis: number;
   banheiros: number;
-  
+
   // Situação financeira
   rendaFamiliar: string;
   pessoasDependentes: number;
-  
+
   // Documentação e compromisso
   aceitaVisitas: boolean;
   disponibilidadeTreinamento: boolean;
   periodoMinimoAcolhimento: "6" | "12" | "18";
   antecedentesCriminais: File | null;
-  
+
   // Motivação e perfil
   motivacao: string;
   experienciaPrevia: string;
@@ -64,20 +64,20 @@ export default function CadastroFamiliaAcolhedora() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, type } = e.target;
-    
+
     setFormData(prev => {
       const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
-      
+
       if (type === 'checkbox') {
         const inputTarget = e.target as HTMLInputElement;
         return { ...prev, [name]: inputTarget.checked };
       }
-      
+
       if (type === 'file') {
         const inputTarget = e.target as HTMLInputElement;
         return { ...prev, [name]: inputTarget.files ? inputTarget.files[0] : null };
       }
-      
+
       return { ...prev, [name]: target.value };
     });
   };
@@ -100,7 +100,7 @@ export default function CadastroFamiliaAcolhedora() {
 
     try {
       const formDataToSend = new FormData();
-      
+
       const usuarioData = {
         nomeCompleto: formData.nomeCompleto,
         email: formData.email,
@@ -124,7 +124,7 @@ export default function CadastroFamiliaAcolhedora() {
       formDataToSend.append('usuario', new Blob([JSON.stringify(usuarioData)], {
         type: 'application/json'
       }));
-      
+
       if (formData.antecedentesCriminais) {
         formDataToSend.append('antecedentesCriminais', formData.antecedentesCriminais);
       }
@@ -232,7 +232,7 @@ export default function CadastroFamiliaAcolhedora() {
           {step === 2 && (
             <div className="form-step">
               <h2>Informações Residenciais</h2>
-              
+
               <div className="input-group">
                 <label>Tipo de Moradia*</label>
                 <select
@@ -305,7 +305,7 @@ export default function CadastroFamiliaAcolhedora() {
           {step === 3 && (
             <div className="form-step">
               <h2>Situação Financeira</h2>
-              
+
               <div className="input-group">
                 <label>Renda Familiar Mensal (R$)*</label>
                 <input
@@ -341,7 +341,7 @@ export default function CadastroFamiliaAcolhedora() {
           {step === 4 && (
             <div className="form-step">
               <h2>Documentação e Compromisso</h2>
-              
+
               <div className="input-group checkbox-group">
                 <input
                   type="checkbox"
@@ -379,14 +379,43 @@ export default function CadastroFamiliaAcolhedora() {
               </div>
 
               <div className="input-group">
-                <label>Atestado de Antecedentes Criminais*</label>
+                {/* input oculto */}
                 <input
+                  id="antecedentesCriminais"
                   type="file"
                   name="antecedentesCriminais"
                   onChange={handleChange}
                   required
                   accept=".pdf,.jpg,.png"
+                  style={{ display: "none" }}
                 />
+
+                {/* label estilizado como botão */}
+                <label
+                  htmlFor="antecedentesCriminais"
+                  className="btn-upload"
+                  style={{
+                    backgroundColor: "#004080",
+                    color: "#fff",
+                    padding: "10px 20px",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                    fontWeight: 600,
+                    display: "inline-block"
+                  }}
+                >
+                  Atestado de Antecedentes Criminais*
+                </label>
+
+                {/* exibe o nome do arquivo após seleção */}
+                {formData.antecedentesCriminais && (
+                  <span
+                    className="file-name"
+                    style={{ marginLeft: "12px", fontWeight: 500, color: "#333" }}
+                  >
+                    {formData.antecedentesCriminais.name}
+                  </span>
+                )}
               </div>
 
               <div className="form-actions">
@@ -400,7 +429,7 @@ export default function CadastroFamiliaAcolhedora() {
           {step === 5 && (
             <div className="form-step">
               <h2>Motivação e Perfil</h2>
-              
+
               <div className="input-group">
                 <label>Motivação para ser família acolhedora*</label>
                 <textarea

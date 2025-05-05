@@ -39,7 +39,7 @@ export default function Header() {
             O que fazemos
           </Link>
           <Link 
-            href="/ajuda" 
+            href="/Cadastro" 
             className="text-white-800 hover:text-gray-900 font-semibold text-lg transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600"
           >
             Ajude os refugiados
