@@ -33,7 +33,7 @@ export default function Home() {
                     SAIBA MAIS
                   </button>
                   <button 
-                    className="bg-transparent hover:bg-white hover:bg-opacity-10 text-blue-700 border-blue-700 border-2 font-semibold py-3 px-8 uppercase transition duration-300"
+                    className="bg-transparent hover:bg-white hover:bg-opacity-10 text-blue-700 border-blue-700 border-2 font-semibold py-3 px-8 uppercase transition duration-300 ease-in-out transform hover:scale-105"
                     onClick={() => router.push("/Cadastro")}
                   >
                     ABRIGUE UMA FAMÍLIA
