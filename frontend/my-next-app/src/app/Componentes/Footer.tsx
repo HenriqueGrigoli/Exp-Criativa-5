@@ -6,9 +6,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-blue-800 text-white">
       <div className="container mx-auto px-6 py-12">
-        {/* Top Section - Duas colunas responsivas */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-          {/* Coluna 1 */}
           <div>
             <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">Institucional</h3>
             <ul className="space-y-3">
@@ -18,8 +16,6 @@ const Footer: React.FC = () => {
               <FooterLink href="/termodeuso" text="Termos de Uso" />
             </ul>
           </div>
-
-          {/* Coluna 2 */}
           <div>
             <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">Ajude a IRIS</h3>
             <ul className="space-y-3">
@@ -40,7 +36,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Rodapé final com logo, direitos e redes sociais */}
         <div className="border-t border-blue-700 pt-8">
           <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Logo + ano */}
@@ -61,7 +56,6 @@ const Footer: React.FC = () => {
               </p>
             </div>
 
-            {/* Redes sociais */}
             <div className="flex space-x-4">
               <SocialIcon href="https://facebook.com" icon="facebook" />
               <SocialIcon href="https://twitter.com" icon="twitter" />
