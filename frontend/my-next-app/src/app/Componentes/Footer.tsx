@@ -25,10 +25,9 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <FooterLink href="/Doacoes" text="Doações" />
               <FooterLink href="/Cadastro" text="Voluntariado" />
-              <FooterLink href="/contato" text="Fale conosco" />
             </ul>
             <div className="mt-6">
-              <h4 className="font-semibold mb-2">Contato</h4>
+              <h4 className="font-semibold mb-2">Fale conosco</h4>
               <p className="flex items-center">
                 <EnvelopeIcon className="mr-2 h-5 w-5" />
                 contato@iris.org.br
