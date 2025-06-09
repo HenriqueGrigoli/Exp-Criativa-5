@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
             <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">Institucional</h3>
             <ul className="space-y-3">
               <FooterLink href="/SobreIris" text="Quem somos" />
-              <FooterLink href="/perguntas-frequentes" text="Perguntas Frequentes" />
+              <FooterLink href="/FAQ" text="Perguntas Frequentes" />
               <FooterLink href="/PoliticaPrivacidade" text="Política de Privacidade" />
               <FooterLink href="/termodeuso" text="Termos de Uso" />
             </ul>
