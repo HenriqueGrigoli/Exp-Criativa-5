@@ -1,4 +1,3 @@
-// components/Footer.tsx
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
@@ -7,89 +6,68 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-blue-800 text-white">
       <div className="container mx-auto px-6 py-12">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Column 1 - About */}
+        {/* Top Section - Duas colunas responsivas */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+          {/* Coluna 1 */}
           <div>
-            <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">SOBRE A IRIS</h3>
+            <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">Institucional</h3>
             <ul className="space-y-3">
-              <FooterLink href="/sobre" text="Quem somos" />
-              <FooterLink href="/transparencia" text="Transparência" />
-              <FooterLink href="/trabalhe-conosco" text="Trabalhe conosco" />
+              <FooterLink href="/SobreIris" text="Quem somos" />
+              <FooterLink href="/perguntas-frequentes" text="Perguntas Frequentes" />
+              <FooterLink href="/PoliticaPrivacidade" text="Política de Privacidade" />
+              <FooterLink href="/termodeuso" text="Termos de Uso" />
+            </ul>
+          </div>
+
+          {/* Coluna 2 */}
+          <div>
+            <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">Ajude a IRIS</h3>
+            <ul className="space-y-3">
+              <FooterLink href="/Doacoes" text="Doações" />
+              <FooterLink href="/Cadastro" text="Voluntariado" />
               <FooterLink href="/contato" text="Fale conosco" />
             </ul>
-          </div>
-
-          {/* Column 2 - How to Help */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">COMO AJUDAR</h3>
-            <ul className="space-y-3">
-              <FooterLink href="/doacoes" text="Doações" />
-              <FooterLink href="/Cadastro" text="Voluntariado" />
-              <FooterLink href="/empresas" text="Empresas" />
-              <FooterLink href="/campanhas" text="Campanhas" />
-            </ul>
-          </div>
-
-          {/* Column 3 - Resources */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">RECURSOS</h3>
-            <ul className="space-y-3">
-              <FooterLink href="/noticias" text="Notícias" />
-              <FooterLink href="/relatorios" text="Relatórios" />
-              <FooterLink href="/publicacoes" text="Publicações" />
-              <FooterLink href="/perguntas-frequentes" text="Perguntas Frequentes" />
-            </ul>
-          </div>
-
-          {/* Column 4 - Contact */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 border-b border-blue-700 pb-2">CONTATO</h3>
-            <div className="space-y-3">
+            <div className="mt-6">
+              <h4 className="font-semibold mb-2">Contato</h4>
               <p className="flex items-center">
                 <EnvelopeIcon className="mr-2 h-5 w-5" />
                 contato@iris.org.br
               </p>
-              <p className="flex items-center">
+              <p className="flex items-center mt-2">
                 <PhoneIcon className="mr-2 h-5 w-5" />
                 (11) 1234-5678
               </p>
-              <div className="pt-4">
-                <h4 className="font-semibold mb-2">SIGA-NOS</h4>
-                <div className="flex space-x-4">
-                  <SocialIcon href="https://facebook.com" icon="facebook" />
-                  <SocialIcon href="https://twitter.com" icon="twitter" />
-                  <SocialIcon href="https://instagram.com" icon="instagram" />
-                  <SocialIcon href="https://youtube.com" icon="youtube" />
-                </div>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-blue-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-                <Link href="/">
-                <div className="relative h-20 w-60"> {/* Increased from h-12 w-32 */}
-                    <Image 
-                    src="/logo_iris_somente_logo.png" 
-                    alt="IRIS Logo" 
+        {/* Rodapé final com logo, direitos e redes sociais */}
+        <div className="border-t border-blue-700 pt-8">
+          <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Logo + ano */}
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <Link href="/">
+                <div className="relative h-12 w-32">
+                  <Image
+                    src="/logo_iris_somente_logo.png"
+                    alt="IRIS Logo"
                     fill
-                    style={{ objectFit: 'contain' }}
+                    style={{ objectFit: "contain" }}
                     priority
-                    sizes="(max-width: 768px) 150px, 250px"
-                    />
+                  />
                 </div>
-                </Link>
-        </div>
-          
-          <div className="text-sm text-center md:text-right">
-            <p>© {new Date().getFullYear()} IRIS - Todos os direitos reservados</p>
-            <div className="flex flex-wrap justify-center md:justify-end space-x-4 mt-2">
-              <FooterLink href="/privacidade" text="Política de Privacidade" small />
-              <FooterLink href="/termos" text="Termos de Uso" small />
-              <FooterLink href="/cookies" text="Cookies" small />
+              </Link>
+              <p className="text-sm mt-2 md:mt-0 text-center md:text-left">
+                © {new Date().getFullYear()} IRIS — Todos os direitos reservados
+              </p>
+            </div>
+
+            {/* Redes sociais */}
+            <div className="flex space-x-4">
+              <SocialIcon href="https://facebook.com" icon="facebook" />
+              <SocialIcon href="https://twitter.com" icon="twitter" />
+              <SocialIcon href="https://instagram.com" icon="instagram" />
+              <SocialIcon href="https://youtube.com" icon="youtube" />
             </div>
           </div>
         </div>
@@ -98,7 +76,6 @@ const Footer: React.FC = () => {
   );
 };
 
-// Helper components with TypeScript interfaces
 interface FooterLinkProps {
   href: string;
   text: string;
@@ -107,9 +84,9 @@ interface FooterLinkProps {
 
 const FooterLink: React.FC<FooterLinkProps> = ({ href, text, small = false }) => (
   <li>
-    <Link 
-      href={href} 
-      className={`hover:text-blue-200 transition ${small ? 'text-xs' : ''}`}
+    <Link
+      href={href}
+      className={`hover:text-blue-200 transition ${small ? "text-xs" : ""}`}
     >
       {text}
     </Link>
@@ -118,7 +95,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({ href, text, small = false }) =>
 
 interface SocialIconProps {
   href: string;
-  icon: 'facebook' | 'twitter' | 'instagram' | 'youtube';
+  icon: "facebook" | "twitter" | "instagram" | "youtube";
 }
 
 const SocialIcon: React.FC<SocialIconProps> = ({ href, icon }) => {
@@ -138,7 +115,6 @@ const SocialIcon: React.FC<SocialIconProps> = ({ href, icon }) => {
   );
 };
 
-// Icons
 const EnvelopeIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

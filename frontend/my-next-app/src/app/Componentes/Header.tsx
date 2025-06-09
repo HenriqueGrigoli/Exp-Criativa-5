@@ -24,10 +24,10 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Menu de navegação centralizado e ampliado */}
+
         <nav className="hidden md:flex space-x-8 mx-8">
           <Link 
-            href="/SobreIris"  // ✅ Corrigido aqui!
+            href="/SobreIris" 
             className="text-white-800 hover:text-gray-900 font-semibold text-lg transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600"
           >
             Sobre a IRIS

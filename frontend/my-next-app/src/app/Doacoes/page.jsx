@@ -3,8 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Layout from "../Componentes/layout";
-import "./doacoes.css";
-
+import Image from "next/image";
 
 export default function Doacoes() {
   const [loading, setLoading] = useState(false);
@@ -22,7 +21,7 @@ export default function Doacoes() {
 
     try {
       const resposta = await axios.post("/api/gerarboleto", {
-        valor: parseFloat(valor)
+        valor: parseFloat(valor),
       });
 
       const data = resposta.data;
@@ -31,11 +30,9 @@ export default function Doacoes() {
         setUrlBoleto(data.url_slip);
         setDigitableLine(data.digitable_line);
       } else {
-        console.error("Erro recebido da API:", data);
         alert("Estamos com problema, tente novamente mais tarde");
       }
     } catch (error) {
-      console.error("Erro na chamada axios:", error.response?.data || error.message);
       alert("Erro inesperado, verifique o console.");
     }
 
@@ -44,116 +41,68 @@ export default function Doacoes() {
 
   return (
     <Layout>
-      <div
-        style={{
-          backgroundColor: "#fff",
-          padding: "40px 20px 70px 20px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+      <div className="bg-white py-20">
+        <div className="flex flex-col md:flex-row items-center gap-8 px-8 text-gray-700 max-w-7xl mx-auto">
+          <div className="w-full md:w-1/2">
+            <Image
+              src="/refugiadoz.png"
+              alt="Refugiados"
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-lg shadow-md object-cover"
+            />
+          </div>
 
-          color: "#333"
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "40px",
-            maxWidth: "1000px",
-            flexWrap: "wrap",
-            marginBottom: "30px",
-            textAlign: "left"
-          }}
-        >
-          <img
-            src="/refugiadoz.png"
-            alt="Refugiados"
-            style={{
-              maxWidth: "400px",
-              borderRadius: "8px",
-              boxShadow: "0 0 10px rgba(0,0,0,0.1)"
-            }}
-          />
-
-          <div style={{ maxWidth: "500px", lineHeight: "1.7" }}>
-            <h1 style={{ fontSize: "2.2rem", color: "#004080", marginBottom: "15px" }}>
+          <div className="w-full md:w-1/2">
+            <h1 className="text-4xl font-bold text-blue-700 mb-6">
               Ajude a Transformar Vidas
             </h1>
-            <p>
+
+            <p className="text-lg mb-4">
               Estamos promovendo uma campanha de arrecadação para apoiar refugiados que chegaram recentemente ao Brasil.
             </p>
-            <p style={{ marginTop: "15px" }}>
-              As doações serão utilizadas para cobrir <strong>necessidades básicas</strong> como alimentação,
-              roupas, medicamentos e transporte.
+            <p className="text-lg mb-4">
+              As doações serão utilizadas para cobrir <strong>necessidades básicas</strong> como alimentação, roupas, medicamentos e transporte.
             </p>
-            <p style={{ marginTop: "15px" }}>
-              Parte da sua doação também será destinada a <strong>ajudar famílias e indivíduos</strong> que estão
-              generosamente cedendo suas casas para acolher essas pessoas.
+            <p className="text-lg mb-4">
+              Parte da sua doação também será destinada a <strong>ajudar famílias e indivíduos</strong> que estão generosamente cedendo suas casas.
             </p>
-            <p style={{ marginTop: "15px", fontWeight: "bold" }}>
+            <p className="text-lg font-bold mb-6">
               Juntos, podemos oferecer acolhimento, dignidade e esperança.
             </p>
-          </div>
-        </div>
 
-        <div style={{ textAlign: "center" }}>
-          {!urlBoleto ? (
-            <>
-              <input
-                type="number"
-                placeholder="Digite o valor a ser doado: "
-                value={valor}
-                onChange={(e) => setValor(e.target.value)}
-                style={{
-                  padding: "10px",
-                  marginBottom: "15px",
-                  width: "220px",
-                  textAlign: "center",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px"
-                }}
-              />
-              <br />
-              <button
-                onClick={gerarBoleto}
-                disabled={loading}
-                style={{
-                  padding: "10px 20px",
-                  cursor: "pointer",
-                  backgroundColor: "#0066ff",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: "4px"
-                }}
-              >
-                {loading ? "Gerando Boleto..." : "Gerar Boleto"}
-              </button>
-            </>
-          ) : (
-            <>
-              <a
-                href={urlBoleto}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-block",
-                  marginTop: "20px",
-                  padding: "10px 20px",
-                  backgroundColor: "#0066ff",
-                  color: "#fff",
-                  textDecoration: "none",
-                  borderRadius: "4px"
-                }}
-              >
-                Abrir boleto
-              </a>
-              <p style={{ marginTop: "20px", fontWeight: "bold" }}>Número do boleto:</p>
-              <p>{digitableLine}</p>
-            </>
-          )}
+            {!urlBoleto ? (
+              <div className="flex flex-col gap-4">
+                <input
+                  type="number"
+                  placeholder="Digite o valor da doação"
+                  value={valor}
+                  onChange={(e) => setValor(e.target.value)}
+                  className="border border-gray-300 rounded px-4 py-2 text-center"
+                />
+                <button
+                  onClick={gerarBoleto}
+                  disabled={loading}
+                  className="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition"
+                >
+                  {loading ? "Gerando Boleto..." : "Gerar Boleto"}
+                </button>
+              </div>
+            ) : (
+              <div className="text-center">
+                <a
+                  href={urlBoleto}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition mt-4"
+                >
+                  Abrir Boleto
+                </a>
+                <p className="mt-4 font-bold">Número do boleto:</p>
+                <p>{digitableLine}</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </Layout>
