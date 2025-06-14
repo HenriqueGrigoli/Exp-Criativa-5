@@ -1,63 +1,36 @@
 "use client";
 
 import Layout from "../Componentes/layout";
-import "./atuacao.css";
+import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import "../../i18n";
 
 export default function Atuacao() {
+  const { t } = useTranslation();
+
   return (
     <Layout>
-      <div
-        style={{
-          backgroundColor: "#fff",
-          padding: "40px 20px 70px 20px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          color: "#333",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "40px",
-            maxWidth: "1000px",
-            flexWrap: "wrap",
-            marginBottom: "30px",
-            textAlign: "left",
-          }}
-        >
-          <img
-            src="/refugiadoz2.png"
-            alt="Refugiados"
-            style={{
-              maxWidth: "400px",
-              borderRadius: "8px",
-              boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-            }}
-          />
+      <div className="bg-white py-20">
+        <div className="flex flex-col md:flex-row items-center gap-8 px-8 text-gray-700 max-w-7xl mx-auto">
+          <div className="w-full md:w-1/2">
+            <Image
+              src="/refugiadoz2.png"
+              alt={t("atuacao.imageAlt")}
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-lg shadow-md object-cover"
+              priority
+            />
+          </div>
 
-          <div style={{ maxWidth: "500px", lineHeight: "1.7" }}>
-            <h1 style={{ fontSize: "2.2rem", color: "#004080", marginBottom: "15px" }}>
-              Como Atuamos ao Lado dos Refugiados
+          <div className="w-full md:w-1/2">
+            <h1 className="text-4xl font-bold text-blue-700 mb-6">
+              {t("atuacao.title")}
             </h1>
 
-            <p>
-              Acolhemos quem chega ao Brasil, garantindo abrigo, alimentação
-              e cuidados básicos.
-            </p>
-
-            <p style={{ marginTop: "15px" }}>
-              Facilitamos documentação, oferecemos apoio psicológico e cursos
-              de língua e capacitação profissional.
-            </p>
-
-            <p style={{ marginTop: "15px", fontWeight: "bold" }}>
-              Com sua ajuda, transformamos acolhimento em novas oportunidades.
-              Junte‑se a nós!
-            </p>
+            <p className="text-lg mb-4">{t("atuacao.description1")}</p>
+            <p className="text-lg mb-4">{t("atuacao.description2")}</p>
+            <p className="text-lg font-bold">{t("atuacao.description3")}</p>
           </div>
         </div>
       </div>

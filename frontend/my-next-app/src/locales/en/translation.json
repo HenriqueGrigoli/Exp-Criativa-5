@@ -1,0 +1,280 @@
+{
+  "menu": {
+    "about": "About IRIS",
+    "whatWeDo": "What we do",
+    "helpRefugees": "Help refugees",
+    "donate": "DONATE NOW"
+  },
+  "home": {
+    "bannerAlt": "Refugees in shelter",
+    "title": "ABOUT IRIS",
+    "description": "IRIS is an NGO dedicated to connecting volunteers with refugees, promoting shelter, support, and integration. We facilitate financial and essential goods donations, ensuring help reaches those who need it most.",
+    "learnMore": "LEARN MORE",
+    "shelterFamily": "SHELTER A FAMILY",
+    "missionTitle": "OUR MISSION",
+    "missionDescription": "Our main goal is to build an efficient and supportive network, providing dignity and new opportunities for those seeking a fresh start.",
+    "howToHelpTitle": "HOW YOU CAN HELP",
+    "help": {
+      "donations": {
+        "title": "DONATIONS",
+        "description": "Contribute financially to support our actions."
+      },
+      "volunteering": {
+        "title": "VOLUNTEERING",
+        "description": "Offer your time and skills to support refugees."
+      },
+      "shelter": {
+        "title": "SHELTER",
+        "description": "Provide temporary housing for families in need."
+      }
+    }
+  },
+  "footer": {
+    "institutional": "Institutional",
+    "helpIris": "Help IRIS",
+    "contactTitle": "Contact us",
+    "rights": "All rights reserved",
+    "links": {
+      "about": "About us",
+      "faq": "FAQ",
+      "privacyPolicy": "Privacy Policy",
+      "terms": "Terms of Use",
+      "donations": "Donations",
+      "volunteering": "Volunteering"
+    }
+  },
+  "terms": {
+  "title": "Terms of Use",
+  "intro": "These terms govern the use of IRIS's website and its related services. By accessing our site, you agree to these terms.",
+  "sections": {
+    "acceptance": {
+      "title": "1. Acceptance of Terms",
+      "text": "By using this site, you acknowledge that you have read, understood, and agreed to these terms."
+    },
+    "services": {
+      "title": "2. Services Offered",
+      "text": "IRIS's website allows donations, volunteer registrations, access to institutional information, and educational resources."
+    },
+    "registration": {
+      "title": "3. Registration and Responsibilities",
+      "text": "Users must provide truthful information and keep their data updated. Misuse of the site may result in blocking or account deletion."
+    },
+    "intellectualProperty": {
+      "title": "4. Intellectual Property",
+      "text": "All site content, including text, images, and logos, belongs to IRIS and may not be reproduced without authorization."
+    },
+    "liability": {
+      "title": "5. Limitation of Liability",
+      "text": "IRIS is not responsible for damages caused by service interruptions, technical failures, or misuse of the platform by third parties."
+    },
+    "changes": {
+      "title": "6. Content Changes",
+      "text": "We may change or discontinue site features at any time without prior notice."
+    },
+    "law": {
+      "title": "7. Applicable Law",
+      "text": "These terms are governed by Brazilian law, especially the General Data Protection Law (LGPD)."
+    }
+  }
+},
+"privacy": {
+  "title": "Privacy Policy",
+  "intro": "This policy explains how IRIS collects, uses, stores, and protects users' personal and sensitive data in compliance with the Brazilian General Data Protection Law (LGPD – Law No. 13.709/2018).",
+  "sections": {
+    "dataCollection": {
+      "title": "1. Data Collected",
+      "text": "We collect personal data such as name, email, phone, address, and donation history. We also collect sensitive data like refugee health information to provide appropriate assistance, and browsing data (IP, cookies, browser type) for analysis and platform improvement."
+    },
+    "purpose": {
+      "title": "2. Purpose of Use",
+      "text": "We use the data to:",
+      "items": {
+        "processDonations": "Process donations and issue payment slips;",
+        "socialScreening": "Conduct social screenings and proper refugee support;",
+        "communication": "Send informational and institutional communications;",
+        "improveExperience": "Customize and improve the user experience on the site."
+      }
+    },
+    "consent": {
+      "title": "3. Consent",
+      "text": "Sensitive data processing will be carried out with the explicit consent of the data subject or legal guardian, as provided in Article 11 of the LGPD."
+    },
+    "sharing": {
+      "title": "4. Data Sharing",
+      "text": "We may share data with service providers such as payment gateways, social screenings, or support partners, under agreements ensuring confidentiality and security."
+    },
+    "security": {
+      "title": "5. Storage and Security",
+      "text": "Data is stored on servers with technical and administrative measures to prevent unauthorized access, leaks, or improper changes."
+    },
+    "retention": {
+      "title": "6. Retention Period",
+      "text": "Data will be kept as long as necessary to achieve the purposes described in this policy or as required by legal and regulatory obligations."
+    },
+    "rights": {
+      "title": "7. User Rights",
+      "text": "Users may request:",
+      "items": {
+        "access": "Access to their personal data;",
+        "correction": "Correction of incomplete or outdated data;",
+        "revocation": "Revocation of consent;",
+        "deletion": "Deletion of data, except when legally required to retain it."
+      },
+      "contact": "To exercise your rights, send a request to"
+    },
+    "cookies": {
+      "title": "8. Use of Cookies",
+      "text": "We use cookies to improve browsing experience and site analysis. You can configure your browser to refuse them, but it may impact some functionalities."
+    },
+    "updates": {
+      "title": "9. Updates",
+      "text": "This policy may be updated periodically. We recommend regularly checking this section to stay informed of changes."
+    }
+  }
+},
+"faq": {
+  "title": "FREQUENTLY ASKED QUESTIONS",
+  "items": [
+    {
+      "question": "Who can help?",
+      "answer": "Anyone willing to donate, host, or offer volunteer support can register and help refugees."
+    },
+    {
+      "question": "How does the shelter process work?",
+      "answer": "After registering as a shelter, our team will contact you for an interview and guide you through the hosting process."
+    },
+    {
+      "question": "Where do the donations go?",
+      "answer": "All donations are directed to registered refugee families and distributed according to urgency and need."
+    },
+    {
+      "question": "How do I become a volunteer?",
+      "answer": "Just go to the registration page, select 'Volunteer' and fill out the form. We will contact you with more information."
+    },
+    {
+      "question": "Can I donate physical items like clothes or food?",
+      "answer": "Yes. We have partner collection points and also receive items at specific events organized by the NGO."
+    },
+    {
+      "question": "Does IRIS operate throughout Brazil?",
+      "answer": "Currently, we are focused on capitals and major urban centers, but we have expansion plans in partnership with other organizations."
+    },
+    {
+      "question": "Is there any cost to be a volunteer?",
+      "answer": "No. Being a volunteer at IRIS is completely free, and we provide guidance and support throughout the process."
+    }
+  ]
+},
+"about": {
+  "title": "About IRIS",
+  "alt": "IRIS illustrative image",
+  "description1": "IRIS is a non-profit organization dedicated to providing humanitarian support to refugees.",
+  "description2": "We connect volunteers, donors, and families in vulnerable situations to promote dignified shelter and real opportunities for integration.",
+  "description3": "IRIS is an initiative aimed at facilitating communication, management, and integration of social actions to support people in vulnerable situations. The system was developed for NGOs, charitable institutions, and volunteers who wish to promote solidarity in an organized and transparent way.",
+  "description4": "With a focus on accessibility, transparency, and usability, IRIS provides tools for registering donors, beneficiaries, tracking donations, and managing reports."
+},
+"donate": {
+  "title": "Help Transform Lives",
+  "imageAlt": "Refugees",
+  "description1": "We are running a fundraising campaign to support refugees who have recently arrived in Brazil.",
+  "description2": "Donations will be used to cover basic needs such as food, clothing, medicine, and transportation.",
+  "description3": "Part of your donation will also help families and individuals who are generously offering their homes.",
+  "description4": "Together, we can offer shelter, dignity, and hope.",
+  "inputPlaceholder": "Enter the donation amount",
+  "generateButton": "Generate Payment Slip",
+  "generating": "Generating Slip...",
+  "openSlip": "Open Payment Slip",
+  "slipNumber": "Slip Number",
+  "errors": {
+    "invalidValue": "Please enter a valid donation amount.",
+    "problem": "We are experiencing an issue, please try again later.",
+    "unexpected": "Unexpected error, check the console."
+  }
+},
+"atuacao": {
+  "title": "How We Support Refugees",
+  "imageAlt": "Refugees",
+  "description1": "We welcome those arriving in Brazil, providing shelter, food, and basic care.",
+  "description2": "We assist with documentation, offer psychological support, language classes, and professional training.",
+  "description3": "With your help, we turn shelter into new opportunities. Join us!"
+},
+"register": {
+    "title": "Host Family Registration",
+    "success": "Registration successful! We will contact you soon.",
+    "errors": {
+      "default": "An error occurred during registration.",
+      "invalidCPF": "Invalid CPF",
+      "invalidEmail": "Invalid email",
+      "required": "This field is required.",
+      "invalidCurrency": "Please enter a valid amount in currency format (e.g., 1,500.00).",
+      "invalidDependents": "Number of dependents must be 1 or greater.",
+      "requiredFile": "You must add at least one file.",
+      "minMotivation": "Describe your motivation with at least 30 characters.",
+      "selectLanguage": "Select at least one language.",
+      "invalidPhone": "Invalid phone. Include area code."
+    },
+    "buttons": {
+      "next": "Next",
+      "back": "Back",
+      "submit": "Submit Registration",
+      "addFile": "Add file",
+      "remove": "Remove"
+    },
+    "steps": {
+      "step1": "1. Personal Data",
+      "step2": "2. Residence",
+      "step3": "3. Financial",
+      "step4": "4. Documents",
+      "step5": "5. Profile"
+    },
+    "stepTitles": {
+      "basicInfo": "Basic Information",
+      "residence": "Residence Information",
+      "finance": "Financial Information",
+      "documents": "Documents and Commitment",
+      "profile": "Motivation and Profile",
+      "financial": "Financial Situation"
+    },
+    "labels": {
+      "fullName": "Full Name",
+      "phone": "Phone",
+      "housingType": "Housing Type",
+      "residenceTime": "Time at Residence (months)",
+      "address": "Full Address",
+      "rooms": "Available Rooms",
+      "bathrooms": "Bathrooms",
+      "income": "Household Monthly Income (R$)",
+      "dependents": "Number of Dependents",
+      "visits": "I agree to periodic home visits",
+      "training": "I am available for mandatory training",
+      "period": "Minimum hosting period (months)",
+      "criminalRecord": "Criminal Background Certificate*",
+      "motivation": "Motivation to be a host family*",
+      "experience": "Previous experience with refugees or immigrants",
+      "languages": "Languages spoken (select all that apply)",
+      "requiredFields": "Required fields",
+      "terms": "By submitting this form, you agree to our Terms of Use and Privacy Policy",
+      "selectOption": "Select an option"
+    },
+    "languages": {
+      "portuguese": "Portuguese",
+      "english": "English",
+      "spanish": "Spanish",
+      "french": "French",
+      "arabic": "Arabic",
+      "other": "Other"
+    },
+    "options": {
+      "own": "Owned",
+      "rented": "Rented",
+      "granted": "Granted"
+    }
+  }
+
+
+
+
+
+
+
+}

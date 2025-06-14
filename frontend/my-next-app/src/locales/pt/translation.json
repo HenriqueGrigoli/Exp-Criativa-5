@@ -1,0 +1,274 @@
+{
+  "menu": {
+    "about": "Sobre a IRIS",
+    "whatWeDo": "O que fazemos",
+    "helpRefugees": "Ajude os refugiados",
+    "donate": "DOE AGORA"
+  },
+  "home": {
+    "bannerAlt": "Refugiados em abrigo",
+    "title": "SOBRE A IRIS",
+    "description": "A IRIS é uma ONG dedicada a conectar voluntários a refugiados, promovendo acolhimento, apoio e integração. Facilitamos doações financeiras e de bens essenciais, garantindo que a ajuda chegue a quem mais precisa.",
+    "learnMore": "SAIBA MAIS",
+    "shelterFamily": "ABRIGUE UMA FAMÍLIA",
+    "missionTitle": "NOSSA MISSÃO",
+    "missionDescription": "Nosso principal objetivo é construir uma rede de suporte eficiente e solidária, proporcionando dignidade e novas oportunidades para aqueles que buscam recomeçar.",
+    "howToHelpTitle": "COMO VOCÊ PODE AJUDAR",
+    "help": {
+      "donations": {
+        "title": "DOAÇÕES",
+        "description": "Contribua com recursos financeiros para nossas ações."
+      },
+      "volunteering": {
+        "title": "VOLUNTARIADO",
+        "description": "Ofereça seu tempo e habilidades para apoiar refugiados."
+      },
+      "shelter": {
+        "title": "ABRIGO",
+        "description": "Forneça moradia temporária para famílias em necessidade."
+      }
+    }
+  },
+  "footer": {
+    "institutional": "Institucional",
+    "helpIris": "Ajude a IRIS",
+    "contactTitle": "Fale conosco",
+    "rights": "Todos os direitos reservados",
+    "links": {
+      "about": "Quem somos",
+      "faq": "Perguntas Frequentes",
+      "privacyPolicy": "Política de Privacidade",
+      "terms": "Termos de Uso",
+      "donations": "Doações",
+      "volunteering": "Voluntariado"
+    }
+  },
+  "terms": {
+  "title": "Termos de Uso",
+  "intro": "Estes termos regulam o uso do site da IRIS e seus serviços relacionados. Ao acessar nosso site, você concorda com estas condições.",
+  "sections": {
+    "acceptance": {
+      "title": "1. Aceitação dos Termos",
+      "text": "Ao utilizar este site, você declara que leu, compreendeu e aceitou os termos aqui descritos."
+    },
+    "services": {
+      "title": "2. Serviços Oferecidos",
+      "text": "O site da IRIS permite doações, cadastro de voluntários, acesso a informações institucionais e recursos educativos."
+    },
+    "registration": {
+      "title": "3. Cadastro e Responsabilidades",
+      "text": "O usuário deve fornecer informações verídicas e manter seus dados atualizados. O uso indevido do site pode resultar em bloqueio ou exclusão."
+    },
+    "intellectualProperty": {
+      "title": "4. Propriedade Intelectual",
+      "text": "Todo o conteúdo do site, incluindo textos, imagens e logotipos, pertence à IRIS e não pode ser reproduzido sem autorização."
+    },
+    "liability": {
+      "title": "5. Limitação de Responsabilidade",
+      "text": "A IRIS não se responsabiliza por danos causados por interrupções no serviço, falhas técnicas ou uso indevido da plataforma por terceiros."
+    },
+    "changes": {
+      "title": "6. Modificações no Conteúdo",
+      "text": "Podemos alterar ou descontinuar funcionalidades do site a qualquer momento, sem aviso prévio."
+    },
+    "law": {
+      "title": "7. Legislação Aplicável",
+      "text": "Estes termos são regidos pela legislação brasileira, especialmente pela Lei Geral de Proteção de Dados (LGPD)."
+    }
+  }
+},
+"privacy": {
+  "title": "Política de Privacidade",
+  "intro": "Esta política explica como a IRIS coleta, utiliza, armazena e protege os dados pessoais e sensíveis dos usuários, em conformidade com a Lei Geral de Proteção de Dados (LGPD – Lei nº 13.709/2018).",
+  "sections": {
+    "dataCollection": {
+      "title": "1. Dados Coletados",
+      "text": "Coletamos dados como nome, e-mail, telefone, endereço e histórico de doações. Também dados sensíveis, como informações de saúde dos refugiados, para oferecer assistência adequada. Além disso, coletamos dados de navegação (IP, cookies, tipo de navegador) para análise e melhoria da plataforma."
+    },
+    "purpose": {
+      "title": "2. Finalidade do Uso",
+      "text": "Utilizamos os dados para:",
+      "items": {
+        "processDonations": "Processar doações e emitir boletos;",
+        "socialScreening": "Realizar triagens sociais e acolhimento adequado dos refugiados;",
+        "communication": "Enviar comunicações informativas e institucionais;",
+        "improveExperience": "Personalizar e melhorar a experiência do usuário no site."
+      }
+    },
+    "consent": {
+      "title": "3. Consentimento",
+      "text": "O tratamento de dados sensíveis será realizado com consentimento explícito do titular ou responsável legal, conforme Art. 11 da LGPD."
+    },
+    "sharing": {
+      "title": "4. Compartilhamento de Dados",
+      "text": "Podemos compartilhar dados com prestadores de serviços como gateways de pagamento, triagens sociais ou parceiros, mediante contrato que assegure confidencialidade e segurança."
+    },
+    "security": {
+      "title": "5. Armazenamento e Segurança",
+      "text": "Os dados são armazenados em servidores com medidas técnicas e administrativas para evitar acessos não autorizados, vazamentos ou alterações indevidas."
+    },
+    "retention": {
+      "title": "6. Tempo de Retenção",
+      "text": "Os dados serão mantidos pelo tempo necessário para atingir as finalidades ou conforme exigido por obrigações legais e regulatórias."
+    },
+    "rights": {
+      "title": "7. Direitos do Titular",
+      "text": "O usuário pode solicitar:",
+      "items": {
+        "access": "Acesso aos dados pessoais;",
+        "correction": "Correção de dados incompletos ou desatualizados;",
+        "revocation": "Revogação do consentimento;",
+        "deletion": "Exclusão dos dados, exceto quando a lei exigir sua manutenção."
+      },
+      "contact": "Para exercer seus direitos, envie uma solicitação para"
+    },
+    "cookies": {
+      "title": "8. Uso de Cookies",
+      "text": "Utilizamos cookies para melhorar a experiência e análise do site. Você pode configurar seu navegador para recusá-los, mas isso pode impactar funcionalidades."
+    },
+    "updates": {
+      "title": "9. Atualizações",
+      "text": "Esta política pode ser atualizada periodicamente. Recomendamos a leitura regular desta seção para acompanhar mudanças."
+    }
+  }
+},
+"faq": {
+  "title": "PERGUNTAS FREQUENTES",
+  "items": [
+    {
+      "question": "Quem pode ajudar?",
+      "answer": "Qualquer pessoa disposta a doar, acolher ou oferecer apoio voluntário pode se cadastrar e ajudar os refugiados."
+    },
+    {
+      "question": "Como funciona o processo de abrigo?",
+      "answer": "Após se cadastrar como abrigo, nossa equipe entra em contato para realizar uma entrevista e orientar sobre o processo de acolhimento."
+    },
+    {
+      "question": "Para onde vão as doações?",
+      "answer": "Todas as doações são destinadas às famílias refugiadas cadastradas e são distribuídas conforme a urgência e necessidade."
+    },
+    {
+      "question": "Como me torno voluntário?",
+      "answer": "Basta acessar a página de cadastro, selecionar 'Voluntário' e preencher o formulário. Entraremos em contato com mais informações."
+    },
+    {
+      "question": "Posso doar itens físicos como roupas ou alimentos?",
+      "answer": "Sim. Temos pontos de coleta parceiros e também recebemos em eventos específicos organizados pela ONG."
+    },
+    {
+      "question": "A IRIS atua em todo o Brasil?",
+      "answer": "Atualmente, estamos concentrados nas capitais e grandes centros urbanos, mas temos planos de expansão em parceria com outras organizações."
+    },
+    {
+      "question": "Há algum custo para ser voluntário?",
+      "answer": "Não. Ser voluntário na IRIS é totalmente gratuito, e oferecemos orientação e suporte durante todo o processo."
+    }
+  ]
+},
+"about": {
+  "title": "Sobre a IRIS",
+  "alt": "Imagem ilustrativa IRIS",
+  "description1": "A IRIS é uma organização sem fins lucrativos dedicada a oferecer suporte humanitário a refugiados.",
+  "description2": "Atuamos conectando voluntários, doadores e famílias em situação de vulnerabilidade para promover acolhimento digno e oportunidades reais de integração.",
+  "description3": "O IRIS é uma iniciativa que visa facilitar a comunicação, gestão e integração de ações sociais em prol de pessoas em situação de vulnerabilidade. O sistema foi desenvolvido para ONGs, instituições beneficentes e voluntários que desejam promover a solidariedade de maneira organizada e transparente.",
+  "description4": "Com foco em acessibilidade, transparência e usabilidade, o IRIS oferece ferramentas para cadastro de doadores, beneficiários, registro de doações e gestão de relatórios."
+},
+"donate": {
+  "title": "Ajude a Transformar Vidas",
+  "imageAlt": "Refugiados",
+  "description1": "Estamos promovendo uma campanha de arrecadação para apoiar refugiados que chegaram recentemente ao Brasil.",
+  "description2": "As doações serão utilizadas para cobrir necessidades básicas como alimentação, roupas, medicamentos e transporte.",
+  "description3": "Parte da sua doação também será destinada a ajudar famílias e indivíduos que estão generosamente cedendo suas casas.",
+  "description4": "Juntos, podemos oferecer acolhimento, dignidade e esperança.",
+  "inputPlaceholder": "Digite o valor da doação",
+  "generateButton": "Gerar Boleto",
+  "generating": "Gerando Boleto...",
+  "openSlip": "Abrir Boleto",
+  "slipNumber": "Número do boleto",
+  "errors": {
+    "invalidValue": "Informe um valor válido para a doação.",
+    "problem": "Estamos com problema, tente novamente mais tarde.",
+    "unexpected": "Erro inesperado, verifique o console.",
+    "requiredFile": "É necessário adicionar pelo menos um arquivo."
+  }
+},
+"atuacao": {
+  "title": "Como Atuamos ao Lado dos Refugiados",
+  "imageAlt": "Refugiados",
+  "description1": "Acolhemos quem chega ao Brasil, garantindo abrigo, alimentação e cuidados básicos.",
+  "description2": "Facilitamos documentação, oferecemos apoio psicológico e cursos de língua e capacitação profissional.",
+  "description3": "Com sua ajuda, transformamos acolhimento em novas oportunidades. Junte-se a nós!"
+},
+ "register": {
+    "title": "Cadastro de Família Acolhedora",
+    "success": "Cadastro realizado com sucesso! Entraremos em contato em breve.",
+    "errors": {
+      "invalidCPF": "CPF inválido",
+      "invalidEmail": "Email inválido",
+      "default": "Ocorreu um erro durante o cadastro.",
+      "required": "Este campo é obrigatório.",
+      "invalidCurrency": "Informe um valor válido no formato monetário (Ex: 1.500,00).",
+      "invalidDependents": "Número de dependentes deve ser maior ou igual a 1.",
+      "requiredFile": "É necessário adicionar pelo menos um arquivo.",
+      "minMotivation": "Descreva sua motivação com pelo menos 30 caracteres.",
+      "selectLanguage": "Selecione pelo menos um idioma.",
+      "invalidPhone": "Telefone inválido. Informe DDD + número."
+    },
+    "buttons": {
+      "next": "Próximo",
+      "back": "Voltar",
+      "submit": "Enviar Cadastro",
+      "addFile": "Adicionar Arquivo",
+      "remove": "Remover"
+    },
+    "steps": {
+      "step1": "1. Dados Pessoais",
+      "step2": "2. Residência",
+      "step3": "3. Financeiro",
+      "step4": "4. Documentos",
+      "step5": "5. Perfil"
+    },
+    "stepTitles": {
+      "basicInfo": "Informações Básicas",
+      "residence": "Informações Residenciais",
+      "finance": "Situação Financeira",
+      "documents": "Documentação e Compromisso",
+      "profile": "Motivação e Perfil",
+      "financial": "Situação Financeira"
+    },
+    "labels": {
+      "fullName": "Nome Completo",
+      "phone": "Telefone",
+      "housingType": "Tipo de Moradia",
+      "residenceTime": "Tempo na Residência (meses)",
+      "address": "Endereço Completo",
+      "rooms": "Quartos Disponíveis",
+      "bathrooms": "Banheiros",
+      "income": "Renda Familiar Mensal (R$)",
+      "dependents": "Pessoas Dependentes",
+      "visits": "Concordo com visitas domiciliares periódicas",
+      "training": "Tenho disponibilidade para participar do treinamento obrigatório",
+      "period": "Período mínimo de acolhimento (meses)",
+      "criminalRecord": "Atestado de Antecedentes Criminais*",
+      "motivation": "Motivação para ser família acolhedora*",
+      "experience": "Experiência prévia com refugiados ou imigrantes",
+      "languages": "Idiomas falados (selecione todos que aplicam)",
+      "requiredFields": "Campos obrigatórios",
+      "terms": "Ao enviar este formulário, você concorda com nossos Termos de Uso e Política de Privacidade",
+      "selectOption": "Selecione uma opção"
+    },
+    "languages": {
+      "portuguese": "Português",
+      "english": "Inglês",
+      "spanish": "Espanhol",
+      "french": "Francês",
+      "arabic": "Árabe",
+      "other": "Outro"
+    },
+    "options": {
+      "own": "Própria",
+      "rented": "Alugada",
+      "granted": "Cedida"
+    }
+  }
+}
