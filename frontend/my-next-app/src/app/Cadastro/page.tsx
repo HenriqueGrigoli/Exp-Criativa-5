@@ -6,11 +6,12 @@ import "./cadastro.css";
 import Layout from "../Componentes/layout";
 import { useTranslation } from "react-i18next";
 import "../../i18n";
-import Step5Profile from "./Step5Profile";
-import Step4Documents from "./Step4Documents";
-import Step3Finance from "./Step3Finance";
-import Step2Residence from "./Step2Residence";
+
 import Step1BasicInfo from "./Step1BasicInfo";
+import Step2Residence from "./Step2Residence";
+import Step3Finance from "./Step3Finance";
+import Step4Documents from "./Step4Documents";
+import Step5Profile from "./Step5Profile";
 
 interface FormData {
   nomeCompleto: string;
@@ -61,18 +62,21 @@ export default function CadastroFamiliaAcolhedora() {
     idiomasFalados: [],
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, type } = e.target;
 
-    setFormData(prev => {
+    setFormData((prev) => {
       const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-      if (type === 'checkbox') {
+      if (type === "checkbox") {
         return { ...prev, [name]: (target as HTMLInputElement).checked };
       }
 
-      if (type === 'file') {
-        return { ...prev, [name]: (target as HTMLInputElement).files ? target.files![0] : null };
+      if (type === "file") {
+        const file = (target as HTMLInputElement).files?.[0] ?? null;
+        return { ...prev, [name]: file };
       }
 
       return { ...prev, [name]: target.value };
@@ -80,8 +84,8 @@ export default function CadastroFamiliaAcolhedora() {
   };
 
   const handleIdiomasChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = Array.from(e.target.selectedOptions).map(option => option.value);
-    setFormData(prev => ({ ...prev, idiomasFalados: selected }));
+    const selected = Array.from(e.target.selectedOptions).map((option) => option.value);
+    setFormData((prev) => ({ ...prev, idiomasFalados: selected }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -90,19 +94,21 @@ export default function CadastroFamiliaAcolhedora() {
     setSuccess("");
 
     try {
-      const formDataToSend = new FormData();
+      const { antecedentesCriminais, ...usuarioData } = formData;
 
-      const usuarioData = { ...formData };
-      delete usuarioData.antecedentesCriminais;
+      const formDataToSend = new FormData();
 
       formDataToSend.append(
         "usuario",
-        new Blob([JSON.stringify(usuarioData)], { type: "application/json" })
+        new Blob([JSON.stringify(usuarioData)], {
+          type: "application/json",
+        })
       );
 
-      if (formData.antecedentesCriminais) {
-        formDataToSend.append("antecedentesCriminais", formData.antecedentesCriminais);
+      if (antecedentesCriminais) {
+        formDataToSend.append("antecedentesCriminais", antecedentesCriminais);
       }
+
 
       const response = await fetch("http://localhost:8080/api/usuarios", {
         method: "POST",
@@ -127,8 +133,8 @@ export default function CadastroFamiliaAcolhedora() {
     }
   };
 
-  const nextStep = () => setStep(prev => prev + 1);
-  const prevStep = () => setStep(prev => prev - 1);
+  const nextStep = () => setStep((prev) => prev + 1);
+  const prevStep = () => setStep((prev) => prev - 1);
 
   return (
     <Layout>
@@ -151,21 +157,49 @@ export default function CadastroFamiliaAcolhedora() {
         {success && <div className="success-message">{success}</div>}
 
         <form onSubmit={handleSubmit}>
-          {/* Steps renderizados dinamicamente */}
           {step === 1 && (
-            <Step1BasicInfo formData={formData} handleChange={handleChange} nextStep={nextStep} t={t} />
+            <Step1BasicInfo
+              formData={formData}
+              handleChange={handleChange}
+              nextStep={nextStep}
+              t={t}
+            />
           )}
           {step === 2 && (
-            <Step2Residence formData={formData} handleChange={handleChange} nextStep={nextStep} prevStep={prevStep} t={t} />
+            <Step2Residence
+              formData={formData}
+              handleChange={handleChange}
+              nextStep={nextStep}
+              prevStep={prevStep}
+              t={t}
+            />
           )}
           {step === 3 && (
-            <Step3Finance formData={formData} handleChange={handleChange} nextStep={nextStep} prevStep={prevStep} t={t} />
+            <Step3Finance
+              formData={formData}
+              handleChange={handleChange}
+              nextStep={nextStep}
+              prevStep={prevStep}
+              t={t}
+            />
           )}
           {step === 4 && (
-            <Step4Documents formData={formData} handleChange={handleChange} nextStep={nextStep} prevStep={prevStep} t={t} />
+            <Step4Documents
+              formData={formData}
+              handleChange={handleChange}
+              nextStep={nextStep}
+              prevStep={prevStep}
+              t={t}
+            />
           )}
           {step === 5 && (
-            <Step5Profile formData={formData} handleChange={handleChange} handleIdiomasChange={handleIdiomasChange} prevStep={prevStep} t={t} />
+            <Step5Profile
+              formData={formData}
+              handleChange={handleChange}
+              handleIdiomasChange={handleIdiomasChange}
+              prevStep={prevStep}
+              t={t}
+            />
           )}
         </form>
       </div>
