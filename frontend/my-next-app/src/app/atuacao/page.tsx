@@ -2,8 +2,12 @@
 
 import Layout from "../Componentes/layout";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import "../../i18n";
 
 export default function Atuacao() {
+  const { t } = useTranslation();
+
   return (
     <Layout>
       <div className="bg-white py-20">
@@ -11,7 +15,7 @@ export default function Atuacao() {
           <div className="w-full md:w-1/2">
             <Image
               src="/refugiadoz2.png"
-              alt="Refugiados"
+              alt={t("atuacao.imageAlt")}
               width={600}
               height={400}
               className="w-full h-auto rounded-lg shadow-md object-cover"
@@ -19,21 +23,14 @@ export default function Atuacao() {
             />
           </div>
 
-          {/* Bloco de texto */}
           <div className="w-full md:w-1/2">
             <h1 className="text-4xl font-bold text-blue-700 mb-6">
-              Como Atuamos ao Lado dos Refugiados
+              {t("atuacao.title")}
             </h1>
 
-            <p className="text-lg mb-4">
-              Acolhemos quem chega ao Brasil, garantindo abrigo, alimentação e cuidados básicos.
-            </p>
-            <p className="text-lg mb-4">
-              Facilitamos documentação, oferecemos apoio psicológico e cursos de língua e capacitação profissional.
-            </p>
-            <p className="text-lg font-bold">
-              Com sua ajuda, transformamos acolhimento em novas oportunidades. Junte-se a nós!
-            </p>
+            <p className="text-lg mb-4">{t("atuacao.description1")}</p>
+            <p className="text-lg mb-4">{t("atuacao.description2")}</p>
+            <p className="text-lg font-bold">{t("atuacao.description3")}</p>
           </div>
         </div>
       </div>

@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
-import Header from "./Header";
-import Footer from "./Footer"; // Import the Footer component
-import "../globals.css";
+import Header from './Header';
+import Footer from './Footer'; 
+import React from 'react';
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div className="app-container flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />

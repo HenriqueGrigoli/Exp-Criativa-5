@@ -2,8 +2,12 @@
 
 import SobreIrisLayout from "../Componentes/SobreIrisLayout";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import '../../i18n';
 
 export default function SobreIrisPage() {
+  const { t } = useTranslation();
+
   return (
     <SobreIrisLayout>
       <div className="bg-white py-20">
@@ -11,7 +15,7 @@ export default function SobreIrisPage() {
           <div className="w-full md:w-1/2">
             <Image
               src="/Imigrantes.png"
-              alt="Imagem ilustrativa IRIS"
+              alt={t("about.alt")}
               width={600}
               height={400}
               className="w-full h-auto rounded-lg shadow-md object-cover"
@@ -19,26 +23,15 @@ export default function SobreIrisPage() {
             />
           </div>
 
-          {/* Bloco de texto */}
           <div className="w-full md:w-1/2">
-            <h1 className="text-4xl font-bold text-blue-700 mb-6">Sobre a IRIS</h1>
+            <h1 className="text-4xl font-bold text-blue-700 mb-6">
+              {t("about.title")}
+            </h1>
 
-            <p className="text-lg mb-4">
-              A IRIS é uma organização sem fins lucrativos dedicada a oferecer suporte humanitário a refugiados.
-            </p>
-
-            <p className="text-lg mb-4">
-              Atuamos conectando voluntários, doadores e famílias em situação de vulnerabilidade para promover acolhimento digno e oportunidades reais de integração.
-            </p>
-
-            <p className="text-lg mb-4">
-              O IRIS é uma iniciativa que visa facilitar a comunicação, gestão e integração de ações sociais em prol de pessoas em situação de vulnerabilidade.
-              O sistema foi desenvolvido para ONGs, instituições beneficentes e voluntários que desejam promover a solidariedade de maneira organizada e transparente.
-            </p>
-
-            <p className="text-lg mb-4">
-              Com foco em acessibilidade, transparência e usabilidade, o IRIS oferece ferramentas para cadastro de doadores, beneficiários, registro de doações e gestão de relatórios.
-            </p>
+            <p className="text-lg mb-4">{t("about.description1")}</p>
+            <p className="text-lg mb-4">{t("about.description2")}</p>
+            <p className="text-lg mb-4">{t("about.description3")}</p>
+            <p className="text-lg mb-4">{t("about.description4")}</p>
           </div>
         </div>
       </div>
