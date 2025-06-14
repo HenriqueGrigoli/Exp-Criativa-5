@@ -4,16 +4,20 @@ import { useState } from "react";
 import axios from "axios";
 import Layout from "../Componentes/layout";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import "../../i18n";
 
 export default function Doacoes() {
+  const { t } = useTranslation();
+
   const [loading, setLoading] = useState(false);
   const [urlBoleto, setUrlBoleto] = useState("");
   const [digitableLine, setDigitableLine] = useState("");
   const [valor, setValor] = useState("");
 
   async function gerarBoleto() {
-    if (!valor || isNaN(valor) || parseFloat(valor) <= 0) {
-      alert("Informe um valor válido para a doação.");
+    if (!valor || isNaN(Number(valor)) || parseFloat(valor) <= 0) {
+      alert(t("donate.errors.invalidValue"));
       return;
     }
 
@@ -30,10 +34,10 @@ export default function Doacoes() {
         setUrlBoleto(data.url_slip);
         setDigitableLine(data.digitable_line);
       } else {
-        alert("Estamos com problema, tente novamente mais tarde");
+        alert(t("donate.errors.problem"));
       }
     } catch (error) {
-      alert("Erro inesperado, verifique o console.");
+      alert(t("donate.errors.unexpected"));
     }
 
     setLoading(false);
@@ -46,7 +50,7 @@ export default function Doacoes() {
           <div className="w-full md:w-1/2">
             <Image
               src="/refugiadoz.png"
-              alt="Refugiados"
+              alt={t("donate.imageAlt")}
               width={600}
               height={400}
               className="w-full h-auto rounded-lg shadow-md object-cover"
@@ -55,27 +59,19 @@ export default function Doacoes() {
 
           <div className="w-full md:w-1/2">
             <h1 className="text-4xl font-bold text-blue-700 mb-6">
-              Ajude a Transformar Vidas
+              {t("donate.title")}
             </h1>
 
-            <p className="text-lg mb-4">
-              Estamos promovendo uma campanha de arrecadação para apoiar refugiados que chegaram recentemente ao Brasil.
-            </p>
-            <p className="text-lg mb-4">
-              As doações serão utilizadas para cobrir <strong>necessidades básicas</strong> como alimentação, roupas, medicamentos e transporte.
-            </p>
-            <p className="text-lg mb-4">
-              Parte da sua doação também será destinada a <strong>ajudar famílias e indivíduos</strong> que estão generosamente cedendo suas casas.
-            </p>
-            <p className="text-lg font-bold mb-6">
-              Juntos, podemos oferecer acolhimento, dignidade e esperança.
-            </p>
+            <p className="text-lg mb-4">{t("donate.description1")}</p>
+            <p className="text-lg mb-4">{t("donate.description2")}</p>
+            <p className="text-lg mb-4">{t("donate.description3")}</p>
+            <p className="text-lg font-bold mb-6">{t("donate.description4")}</p>
 
             {!urlBoleto ? (
               <div className="flex flex-col gap-4">
                 <input
                   type="number"
-                  placeholder="Digite o valor da doação"
+                  placeholder={t("donate.inputPlaceholder")}
                   value={valor}
                   onChange={(e) => setValor(e.target.value)}
                   className="border border-gray-300 rounded px-4 py-2 text-center"
@@ -85,7 +81,7 @@ export default function Doacoes() {
                   disabled={loading}
                   className="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition"
                 >
-                  {loading ? "Gerando Boleto..." : "Gerar Boleto"}
+                  {loading ? t("donate.generating") : t("donate.generateButton")}
                 </button>
               </div>
             ) : (
@@ -96,9 +92,9 @@ export default function Doacoes() {
                   rel="noopener noreferrer"
                   className="inline-block bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition mt-4"
                 >
-                  Abrir Boleto
+                  {t("donate.openSlip")}
                 </a>
-                <p className="mt-4 font-bold">Número do boleto:</p>
+                <p className="mt-4 font-bold">{t("donate.slipNumber")}:</p>
                 <p>{digitableLine}</p>
               </div>
             )}
