@@ -1,37 +1,59 @@
 "use client";
 
-import Link from 'next/link';
 import { JSX } from 'react';
 
-export default function AdminSidebar() {
+interface AdminSidebarProps {
+  onSectionChange: (section: string) => void;
+  activeSection: string;
+}
+
+export default function AdminSidebar({ onSectionChange, activeSection }: AdminSidebarProps) {
   return (
-    <div className="w-64 bg-indigo-700 text-white shadow-lg">
-      <div className="p-4 flex flex-col items-center border-b border-indigo-600">
-        <div className="h-16 w-16 rounded-full bg-indigo-500 flex items-center justify-center mb-2">
-          <span className="text-xl font-semibold">AD</span>
+    <div className="w-64 bg-indigo-700 text-white shadow-lg flex flex-col justify-between">
+      <div>
+        <div className="p-4 flex flex-col items-center border-b border-indigo-600">
+          <div className="h-16 w-16 rounded-full bg-indigo-500 flex items-center justify-center mb-2">
+            <span className="text-xl font-semibold">AD</span>
+          </div>
+          <h2 className="text-lg font-semibold">Admin</h2>
+          <p className="text-xs text-indigo-200">admin@example.com</p>
         </div>
-        <h2 className="text-lg font-semibold">Admin</h2>
-        <p className="text-xs text-indigo-200">admin@example.com</p>
+
+        <nav className="p-4">
+          <ul className="space-y-2">
+            <NavItem 
+              icon="home" 
+              onClick={() => onSectionChange('home')}
+              active={activeSection === 'home'}
+            >
+              Home
+            </NavItem>
+            <NavItem 
+              icon="users" 
+              onClick={() => onSectionChange('usuarios')}
+              active={activeSection === 'usuarios'}
+            >
+              Usuários
+            </NavItem>
+            <NavItem 
+              icon="documents" 
+              onClick={() => onSectionChange('imigrantes')}
+              active={activeSection === 'imigrantes'}
+            >
+              Imigrantes
+            </NavItem>
+            <NavItem 
+              icon="settings" 
+              onClick={() => onSectionChange('configuracoes')}
+              active={activeSection === 'configuracoes'}
+            >
+              Configurações
+            </NavItem>
+          </ul>
+        </nav>
       </div>
 
-      <nav className="p-4">
-        <ul className="space-y-2">
-          <NavItem icon="home" href="#" active>
-            Dashboard
-          </NavItem>
-          <NavItem icon="users" href="#">
-            Usuários
-          </NavItem>
-          <NavItem icon="documents" href="#">
-            Documentos
-          </NavItem>
-          <NavItem icon="settings" href="#">
-            Configurações
-          </NavItem>
-        </ul>
-      </nav>
-
-      <div className="absolute bottom-0 w-64 p-4">
+      <div className="p-4 border-t border-indigo-600">
         <button className="flex items-center p-2 w-full rounded-lg hover:bg-indigo-800">
           <SidebarIcon icon="logout" />
           Sair
@@ -43,21 +65,21 @@ export default function AdminSidebar() {
 
 interface NavItemProps {
   icon: string;
-  href: string;
+  onClick?: () => void;
   children: React.ReactNode;
   active?: boolean;
 }
 
-function NavItem({ icon, href, children, active = false }: NavItemProps) {
+function NavItem({ icon, onClick, children, active = false }: NavItemProps) {
   return (
     <li>
-      <Link 
-        href={href} 
-        className={`flex items-center p-2 rounded-lg hover:bg-indigo-800 ${active ? 'bg-indigo-800' : ''}`}
+      <button 
+        onClick={onClick}
+        className={`flex items-center p-2 w-full rounded-lg hover:bg-indigo-800 ${active ? 'bg-indigo-800' : ''}`}
       >
         <SidebarIcon icon={icon} />
         {children}
-      </Link>
+      </button>
     </li>
   );
 }

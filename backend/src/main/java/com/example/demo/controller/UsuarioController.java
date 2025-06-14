@@ -1,9 +1,16 @@
 package com.example.demo.controller;
+
 import com.example.demo.model.Usuario;
+import com.example.demo.model.Imigrante;
 import com.example.demo.repository.UsuarioRepository;
+import com.example.demo.services.AcolhimentoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update; // Import adicionado
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -11,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,17 +28,25 @@ import java.util.List;
 import java.util.UUID;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/api/usuarios")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UsuarioController {
 
     private final UsuarioRepository repository;
+    private final AcolhimentoService acolhimentoService;
+    private final MongoTemplate mongoTemplate; // Adicionado para consultas mais complexas
     private final Path fileStorageLocation;
     private final ObjectMapper objectMapper;
 
-    public UsuarioController(UsuarioRepository repository, ObjectMapper objectMapper) {
+    public UsuarioController(UsuarioRepository repository, 
+                           AcolhimentoService acolhimentoService,
+                           MongoTemplate mongoTemplate,
+                           ObjectMapper objectMapper) {
         this.repository = repository;
+        this.acolhimentoService = acolhimentoService;
+        this.mongoTemplate = mongoTemplate;
         this.objectMapper = objectMapper;
         this.fileStorageLocation = Paths.get("uploads").toAbsolutePath().normalize();
         
@@ -119,4 +135,51 @@ public class UsuarioController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/aprovados")
+    public ResponseEntity<List<Usuario>> listarAprovados() {
+        List<Usuario> usuarios = repository.findByAprovado(true);
+        return ResponseEntity.ok(usuarios);
+    }
+
+    // Novo endpoint para recomendar famílias acolhedoras
+    @GetMapping("/recomendar")
+    public ResponseEntity<Usuario> recomendarFamiliaAcolhedora(
+            @RequestParam int membros,
+            @RequestParam(required = false) List<String> idiomas) {
+        
+        Optional<Usuario> familiaOpt = acolhimentoService.recomendarMelhorFamilia(membros, idiomas, false);
+        
+        return familiaOpt.map(ResponseEntity::ok)
+                       .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Novo endpoint para atribuir família acolhedora a um imigrante
+    @PatchMapping("/{familiaId}/atribuir/{imigranteId}")
+    public ResponseEntity<Void> atribuirImigrante(
+            @PathVariable String familiaId,
+            @PathVariable String imigranteId) {
+        
+        // Atualiza o imigrante com a nova família acolhedora
+        Query query = new Query(Criteria.where("id").is(imigranteId));
+        Update update = new Update().set("familiaId", familiaId);
+        mongoTemplate.updateFirst(query, update, Imigrante.class);
+        
+        return ResponseEntity.noContent().build();
+    }
+
+    // Novo endpoint para obter famílias acolhedoras com capacidade disponível
+    @GetMapping("/com-capacidade")
+    public ResponseEntity<List<Usuario>> listarComCapacidade(
+            @RequestParam int membros) {
+        
+        // Calcula quartos necessários
+        int quartosNecessarios = (int) Math.ceil(membros / 2.0);
+        
+        // Filtra famílias com quartos suficientes e aprovadas
+        List<Usuario> familias = repository.findByAprovadoTrueAndQuartosDisponiveisGreaterThanEqual(quartosNecessarios);
+        
+        return ResponseEntity.ok(familias);
+    }
 }
+
