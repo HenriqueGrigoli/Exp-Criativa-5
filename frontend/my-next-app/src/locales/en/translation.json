@@ -202,12 +202,23 @@
     "title": "Host Family Registration",
     "success": "Registration successful! We will contact you soon.",
     "errors": {
-      "default": "An error occurred during registration."
+      "default": "An error occurred during registration.",
+      "invalidCPF": "Invalid CPF",
+      "invalidEmail": "Invalid email",
+      "required": "This field is required.",
+      "invalidCurrency": "Please enter a valid amount in currency format (e.g., 1,500.00).",
+      "invalidDependents": "Number of dependents must be 1 or greater.",
+      "requiredFile": "You must add at least one file.",
+      "minMotivation": "Describe your motivation with at least 30 characters.",
+      "selectLanguage": "Select at least one language.",
+      "invalidPhone": "Invalid phone. Include area code."
     },
     "buttons": {
       "next": "Next",
       "back": "Back",
-      "submit": "Submit Registration"
+      "submit": "Submit Registration",
+      "addFile": "Add file",
+      "remove": "Remove"
     },
     "steps": {
       "step1": "1. Personal Data",
@@ -221,7 +232,8 @@
       "residence": "Residence Information",
       "finance": "Financial Information",
       "documents": "Documents and Commitment",
-      "profile": "Motivation and Profile"
+      "profile": "Motivation and Profile",
+      "financial": "Financial Situation"
     },
     "labels": {
       "fullName": "Full Name",
@@ -241,7 +253,8 @@
       "experience": "Previous experience with refugees or immigrants",
       "languages": "Languages spoken (select all that apply)",
       "requiredFields": "Required fields",
-      "terms": "By submitting this form, you agree to our Terms of Use and Privacy Policy"
+      "terms": "By submitting this form, you agree to our Terms of Use and Privacy Policy",
+      "selectOption": "Select an option"
     },
     "languages": {
       "portuguese": "Portuguese",

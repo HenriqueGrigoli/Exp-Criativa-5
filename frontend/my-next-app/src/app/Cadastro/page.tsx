@@ -18,17 +18,17 @@ interface FormData {
   email: string;
   telefone: string;
   cpf: string;
-  tipoMoradia: "própria" | "alugada" | "cedida";
+  tipoMoradia: string;
   tempoResidencia: string;
   enderecoCompleto: string;
-  quartosDisponiveis: number;
-  banheiros: number;
+  quartosDisponiveis: string;
+  banheiros: string;
   rendaFamiliar: string;
-  pessoasDependentes: number;
+  pessoasDependentes: string;
   aceitaVisitas: boolean;
   disponibilidadeTreinamento: boolean;
-  periodoMinimoAcolhimento: "6" | "12" | "18";
-  antecedentesCriminais: File | null;
+  periodoMinimoAcolhimento: string;
+  antecedentesCriminais: File[];
   motivacao: string;
   experienciaPrevia: string;
   idiomasFalados: string[];
@@ -46,17 +46,17 @@ export default function CadastroFamiliaAcolhedora() {
     email: "",
     telefone: "",
     cpf: "",
-    tipoMoradia: "própria",
+    tipoMoradia: "",
     tempoResidencia: "",
     enderecoCompleto: "",
-    quartosDisponiveis: 1,
-    banheiros: 1,
+    quartosDisponiveis: "",
+    banheiros: "",
     rendaFamiliar: "",
-    pessoasDependentes: 0,
+    pessoasDependentes: "",
     aceitaVisitas: false,
     disponibilidadeTreinamento: false,
-    periodoMinimoAcolhimento: "6",
-    antecedentesCriminais: null,
+    periodoMinimoAcolhimento: "",
+    antecedentesCriminais: [],
     motivacao: "",
     experienciaPrevia: "",
     idiomasFalados: [],
@@ -65,22 +65,27 @@ export default function CadastroFamiliaAcolhedora() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, type } = e.target;
+    const { name, type, value, checked, files } = e.target as HTMLInputElement;
 
-    setFormData((prev) => {
-      const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
-
-      if (type === "checkbox") {
-        return { ...prev, [name]: (target as HTMLInputElement).checked };
+    if (type === "checkbox") {
+      setFormData((prev) => ({ ...prev, [name]: checked }));
+    } else if (type === "file") {
+      if (files) {
+        setFormData((prev) => ({
+          ...prev,
+          antecedentesCriminais: [...prev.antecedentesCriminais, ...Array.from(files)],
+        }));
       }
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
 
-      if (type === "file") {
-        const file = (target as HTMLInputElement).files?.[0] ?? null;
-        return { ...prev, [name]: file };
-      }
-
-      return { ...prev, [name]: target.value };
-    });
+  const handleRemoveFile = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      antecedentesCriminais: prev.antecedentesCriminais.filter((_, i) => i !== index),
+    }));
   };
 
   const handleIdiomasChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -94,21 +99,26 @@ export default function CadastroFamiliaAcolhedora() {
     setSuccess("");
 
     try {
-      const { antecedentesCriminais, ...usuarioData } = formData;
+      const { antecedentesCriminais, ...rest } = formData;
+
+      const usuarioData = {
+        ...rest,
+        tempoResidencia: Number(rest.tempoResidencia),
+        quartosDisponiveis: Number(rest.quartosDisponiveis),
+        banheiros: Number(rest.banheiros),
+        rendaFamiliar: Number(rest.rendaFamiliar),
+        pessoasDependentes: Number(rest.pessoasDependentes),
+      };
 
       const formDataToSend = new FormData();
-
       formDataToSend.append(
         "usuario",
-        new Blob([JSON.stringify(usuarioData)], {
-          type: "application/json",
-        })
+        new Blob([JSON.stringify(usuarioData)], { type: "application/json" })
       );
 
-      if (antecedentesCriminais) {
-        formDataToSend.append("antecedentesCriminais", antecedentesCriminais);
-      }
-
+      antecedentesCriminais.forEach((file, index) => {
+        formDataToSend.append(`antecedentesCriminais`, file);
+      });
 
       const response = await fetch("http://localhost:8080/api/usuarios", {
         method: "POST",
@@ -186,7 +196,7 @@ export default function CadastroFamiliaAcolhedora() {
           {step === 4 && (
             <Step4Documents
               formData={formData}
-              handleChange={handleChange}
+              setFormData={setFormData}
               nextStep={nextStep}
               prevStep={prevStep}
               t={t}

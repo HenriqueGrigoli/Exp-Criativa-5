@@ -1,9 +1,9 @@
 .cadastro-container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
   font-family: Arial, sans-serif;
-  color: black;
+  color: #111;
 }
 
 .cadastro-header {
@@ -11,9 +11,15 @@
   margin-bottom: 30px;
 }
 
+.cadastro-header h1 {
+  font-size: 1.8rem;
+}
+
 .progress-bar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 8px;
   margin: 20px 0;
 }
 
@@ -23,6 +29,8 @@
   padding: 10px;
   background: #f0f0f0;
   position: relative;
+  border-radius: 6px;
+  font-weight: 500;
 }
 
 .step.active {
@@ -40,6 +48,7 @@
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-left: 10px solid #f0f0f0;
+  transform: translateY(-50%);
   z-index: 1;
 }
 
@@ -47,11 +56,12 @@
   border-left-color: #4CAF50;
 }
 
+/* Form */
 .form-step {
   background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgb(255, 255, 255);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .input-group {
@@ -64,16 +74,14 @@
   font-weight: bold;
 }
 
-.input-group input[type="text"],
-.input-group input[type="email"],
-.input-group input[type="tel"],
-.input-group input[type="number"],
+.input-group input,
 .input-group select,
 .input-group textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 1rem;
 }
 
 .input-group textarea {
@@ -92,18 +100,24 @@
 .form-actions {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   margin-top: 30px;
 }
 
 .form-actions button {
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .form-actions button[type="button"] {
   background: #f0f0f0;
+}
+
+.form-actions button[type="button"]:hover {
+  background: #e5e5e5;
 }
 
 .form-actions button[type="submit"] {
@@ -111,11 +125,15 @@
   color: white;
 }
 
+.form-actions button[type="submit"]:hover {
+  background: #43a047;
+}
+
 .error-message {
   color: #d32f2f;
   background: #ffebee;
   padding: 15px;
-  border-radius: 4px;
+  border-radius: 6px;
   margin-bottom: 20px;
 }
 
@@ -123,16 +141,132 @@
   color: #388e3c;
   background: #e8f5e9;
   padding: 15px;
-  border-radius: 4px;
+  border-radius: 6px;
   margin-bottom: 20px;
 }
 
 .form-note {
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: #666;
   margin-top: 20px;
 }
 
+/* Responsividade */
+@media (max-width: 768px) {
+  .progress-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+}
+
+.checkbox-group label {
+  font-weight: normal;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* 📄 Lista de arquivos */
+.file-list {
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f8f8;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.file-name {
+  font-size: 0.95rem;
+  color: #333;
+  overflow-wrap: anywhere;
+}
+
+.remove-file {
+  background: #e53935;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s;
+}
+
+.remove-file:hover {
+  background: #c62828;
+}
+
+/* Botão de upload estilizado */
+.btn-upload {
+  display: inline-block;
+  background-color: #004aad;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn-upload:hover {
+  background-color: #003580;
+}
+
+.error-message {
+  color: #d32f2f;
+  background: #ffebee;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+
 body {
-  background-color: white;
+  background-color: #f9fafb;
 }
