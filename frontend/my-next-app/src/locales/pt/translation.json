@@ -188,7 +188,8 @@
   "errors": {
     "invalidValue": "Informe um valor válido para a doação.",
     "problem": "Estamos com problema, tente novamente mais tarde.",
-    "unexpected": "Erro inesperado, verifique o console."
+    "unexpected": "Erro inesperado, verifique o console.",
+    "requiredFile": "É necessário adicionar pelo menos um arquivo."
   }
 },
 "atuacao": {
@@ -202,12 +203,23 @@
     "title": "Cadastro de Família Acolhedora",
     "success": "Cadastro realizado com sucesso! Entraremos em contato em breve.",
     "errors": {
-      "default": "Ocorreu um erro durante o cadastro."
+      "invalidCPF": "CPF inválido",
+      "invalidEmail": "Email inválido",
+      "default": "Ocorreu um erro durante o cadastro.",
+      "required": "Este campo é obrigatório.",
+      "invalidCurrency": "Informe um valor válido no formato monetário (Ex: 1.500,00).",
+      "invalidDependents": "Número de dependentes deve ser maior ou igual a 1.",
+      "requiredFile": "É necessário adicionar pelo menos um arquivo.",
+      "minMotivation": "Descreva sua motivação com pelo menos 30 caracteres.",
+      "selectLanguage": "Selecione pelo menos um idioma.",
+      "invalidPhone": "Telefone inválido. Informe DDD + número."
     },
     "buttons": {
       "next": "Próximo",
       "back": "Voltar",
-      "submit": "Enviar Cadastro"
+      "submit": "Enviar Cadastro",
+      "addFile": "Adicionar Arquivo",
+      "remove": "Remover"
     },
     "steps": {
       "step1": "1. Dados Pessoais",
@@ -221,7 +233,8 @@
       "residence": "Informações Residenciais",
       "finance": "Situação Financeira",
       "documents": "Documentação e Compromisso",
-      "profile": "Motivação e Perfil"
+      "profile": "Motivação e Perfil",
+      "financial": "Situação Financeira"
     },
     "labels": {
       "fullName": "Nome Completo",
@@ -241,7 +254,8 @@
       "experience": "Experiência prévia com refugiados ou imigrantes",
       "languages": "Idiomas falados (selecione todos que aplicam)",
       "requiredFields": "Campos obrigatórios",
-      "terms": "Ao enviar este formulário, você concorda com nossos Termos de Uso e Política de Privacidade"
+      "terms": "Ao enviar este formulário, você concorda com nossos Termos de Uso e Política de Privacidade",
+      "selectOption": "Selecione uma opção"
     },
     "languages": {
       "portuguese": "Português",
