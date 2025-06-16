@@ -2,6 +2,7 @@
 
 import { Usuario } from "../types";
 import { useState } from 'react';
+import { Dialog } from '@headlessui/react';
 
 interface UsersTableProps {
   usuarios: Usuario[];
@@ -10,6 +11,7 @@ interface UsersTableProps {
   loading: boolean;
   onApprove: (id: string) => void;
   onReject: (id: string) => void;
+  onEdit: (id: string, data: Partial<Usuario>) => Promise<void>;
   onPageChange: (page: number) => void;
 }
 
@@ -19,6 +21,7 @@ export default function UsersTable({
   usuariosPerPage,
   loading,
   onApprove,
+  onEdit,
   onReject,
   onPageChange
 }: UsersTableProps) {
@@ -50,7 +53,8 @@ export default function UsersTable({
                     key={usuario.id} 
                     usuario={usuario} 
                     onApprove={onApprove} 
-                    onReject={onReject} 
+                    onReject={onReject}
+                    onEdit={onEdit}
                     loading={loading}
                   />
                 ))
@@ -81,54 +85,155 @@ export default function UsersTable({
   );
 }
 
-function UserRow({ usuario, onApprove, onReject, loading }: { 
+function UserRow({ usuario, onApprove, onReject, onEdit, loading }: { 
   usuario: Usuario; 
   onApprove: (id: string) => void; 
   onReject: (id: string) => void;
+  onEdit: (id: string, data: Partial<Usuario>) => Promise<void>;
   loading: boolean;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [editData, setEditData] = useState<Partial<Usuario>>({
+    nomeCompleto: usuario.nomeCompleto,
+    email: usuario.email,
+    cpf: usuario.cpf,
+    tipoMoradia: usuario.tipoMoradia
+  });
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEdit = async () => {
+    setIsEditing(true);
+    try {
+      await onEdit(usuario.id, editData);
+      setIsOpen(false);
+    } finally {
+      setIsEditing(false);
+    }
+  };
+
   return (
-    <tr key={`user-row-${usuario.id}`} className="hover:bg-gray-50">
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{usuario.nomeCompleto}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{usuario.email}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{usuario.cpf}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{usuario.tipoMoradia}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-        {usuario.antecedentesCriminais && (
-          <a 
-            href={`http://localhost:8080/api/usuarios/uploads/${usuario.antecedentesCriminais}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 hover:underline"
-          >
-            Ver Documento
-          </a>
-        )}
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <StatusBadge aprovado={usuario.aprovado} />
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-        <div className="flex space-x-2">
-          {!usuario.aprovado && (
+    <>
+      <tr key={`user-row-${usuario.id}`} className="hover:bg-gray-50">
+        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{usuario.nomeCompleto}</td>
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{usuario.email}</td>
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{usuario.cpf}</td>
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{usuario.tipoMoradia}</td>
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          {usuario.antecedentesCriminais && (
+            <a 
+              href={`http://localhost:8080/api/usuarios/uploads/${usuario.antecedentesCriminais}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 hover:underline"
+            >
+              Ver Documento
+            </a>
+          )}
+        </td>
+        <td className="px-6 py-4 whitespace-nowrap">
+          <StatusBadge aprovado={usuario.aprovado} />
+        </td>
+        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+          <div className="flex space-x-2">
+            {!usuario.aprovado && (
+              <button 
+                onClick={() => onApprove(usuario.id)}
+                className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50"
+                disabled={loading}
+              >
+                Aprovar
+              </button>
+            )}
             <button 
-              onClick={() => onApprove(usuario.id)}
-              className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50"
+              onClick={() => setIsOpen(true)}
+              className="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
               disabled={loading}
             >
-              Aprovar
+              Editar
             </button>
-          )}
-          <button 
-            onClick={() => onReject(usuario.id)}
-            className="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50"
-            disabled={loading}
-          >
-            Remover
-          </button>
+            <button 
+              onClick={() => onReject(usuario.id)}
+              className="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50"
+              disabled={loading}
+            >
+              Remover
+            </button>
+          </div>
+        </td>
+      </tr>
+
+      {/* Modal de Edição */}
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="w-full max-w-md rounded bg-white p-6">
+            <Dialog.Title className="text-lg font-bold text-black mb-4">Editar Usuário</Dialog.Title>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-black">Nome Completo</label>
+                <input
+                  type="text"
+                  value={editData.nomeCompleto || ''}
+                  onChange={(e) => setEditData({...editData, nomeCompleto: e.target.value})}
+                  className="mt-1 text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-black">Email</label>
+                <input
+                  type="email"
+                  value={editData.email || ''}
+                  onChange={(e) => setEditData({...editData, email: e.target.value})}
+                  className="mt-1 text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-black">CPF</label>
+                <input
+                  type="text"
+                  value={editData.cpf || ''}
+                  onChange={(e) => setEditData({...editData, cpf: e.target.value})}
+                  className="mt-1 text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-black">Tipo de Moradia</label>
+                <select
+                  value={editData.tipoMoradia || ''}
+                  onChange={(e) => setEditData({...editData, tipoMoradia: e.target.value})}
+                  className="mt-1 block w-full text-black rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                >
+                  <option value="CASA">Casa</option>
+                  <option value="APARTAMENTO">Apartamento</option>
+                  <option value="OUTRO">Outro</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-end space-x-3">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="px-4 py-2 text-sm font-medium text-black bg-gray-100 rounded-md hover:bg-gray-200"
+                disabled={isEditing}
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleEdit}
+                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:opacity-50"
+                disabled={isEditing}
+              >
+                {isEditing ? 'Salvando...' : 'Salvar Alterações'}
+              </button>
+            </div>
+          </Dialog.Panel>
         </div>
-      </td>
-    </tr>
+      </Dialog>
+    </>
   );
 }
 

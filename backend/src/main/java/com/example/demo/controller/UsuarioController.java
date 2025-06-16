@@ -8,9 +8,11 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.Map;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -94,6 +98,53 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Erro ao cadastrar usuário: " + ex.getMessage());
         }
+    }
+
+     @PutMapping("/{id}")
+    public ResponseEntity<Usuario> atualizarUsuario(
+            @PathVariable String id,
+            @RequestBody Usuario usuarioAtualizado) {
+        
+        return repository.findById(id)
+            .map(usuarioExistente -> {
+                // Atualiza apenas os campos permitidos para edição
+                usuarioExistente.setNomeCompleto(usuarioAtualizado.getNomeCompleto());
+                usuarioExistente.setEmail(usuarioAtualizado.getEmail());
+                usuarioExistente.setCpf(usuarioAtualizado.getCpf());
+                usuarioExistente.setTipoMoradia(usuarioAtualizado.getTipoMoradia());
+                
+                Usuario usuarioSalvo = repository.save(usuarioExistente);
+                return ResponseEntity.ok(usuarioSalvo);
+            })
+            .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Método para atualização parcial (PATCH)
+    @PatchMapping("/{id}")
+    public ResponseEntity<Usuario> atualizarParcialUsuario(
+            @PathVariable String id,
+            @RequestBody Map<String, Object> updates) {
+        
+        Query query = new Query(Criteria.where("id").is(id));
+        Update update = new Update();
+        
+        updates.forEach((key, value) -> {
+            // Filtra os campos que podem ser atualizados
+            if (List.of("nomeCompleto", "email", "cpf", "tipoMoradia").contains(key)) {
+                update.set(key, value);
+            }
+        });
+        
+        return Optional.ofNullable(
+            mongoTemplate.findAndModify(
+                query, 
+                update, 
+                new FindAndModifyOptions().returnNew(true), 
+                Usuario.class
+            )
+        )
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/uploads/{filename:.+}")

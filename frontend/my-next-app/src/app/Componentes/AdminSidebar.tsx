@@ -42,13 +42,6 @@ export default function AdminSidebar({ onSectionChange, activeSection }: AdminSi
             >
               Imigrantes
             </NavItem>
-            <NavItem 
-              icon="settings" 
-              onClick={() => onSectionChange('configuracoes')}
-              active={activeSection === 'configuracoes'}
-            >
-              Configurações
-            </NavItem>
           </ul>
         </nav>
       </div>

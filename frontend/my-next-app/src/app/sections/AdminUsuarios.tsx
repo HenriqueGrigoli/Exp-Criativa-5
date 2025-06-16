@@ -37,7 +37,26 @@ export default function AdminUsuarios() {
       setLoading(false);
     }
   };
-
+  const handleEditUser = async (userId: string, data: Partial<Usuario>) => {
+    try {
+      // Chamada à API para atualizar o usuário
+      const response = await fetch(`http://localhost:8080/api/usuarios/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      if (!response.ok) throw new Error('Erro ao atualizar usuário');
+      
+      // Atualize o estado ou recarregue os usuários
+      fetchUsuarios();
+    } catch (error) {
+      console.error('Erro:', error);
+      throw error;
+    }
+  };
   const handleApprove = async (id: string) => {
     try {
       const response = await fetch(`http://localhost:8080/api/usuarios/${id}/aprovar`, {
@@ -98,6 +117,7 @@ export default function AdminUsuarios() {
               onApprove={handleApprove}
               onReject={handleReject}
               onPageChange={setCurrentPage}
+              onEdit={handleEditUser}
             />
           )}
         </div>
