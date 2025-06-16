@@ -13,4 +13,5 @@ public interface UsuarioRepository extends MongoRepository<Usuario, String> {
     boolean existsByEmail(String email);
     List<Usuario> findByAprovado(boolean aprovado);
     List<Usuario> findByAprovadoTrueAndQuartosDisponiveisGreaterThanEqual(int quartosDisponiveis);
+
 }

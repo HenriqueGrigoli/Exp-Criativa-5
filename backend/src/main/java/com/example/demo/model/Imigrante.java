@@ -3,6 +3,7 @@ package com.example.demo.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -66,6 +67,13 @@ public class Imigrante {
     
     @Field("data_cadastro")
     private LocalDate dataCadastro = LocalDate.now();
+    
+    @Field("id_usuario_acolhedor")
+    private String idUsuarioAcolhedor;
+    
+    @Transient
+    private String usuarioAcolhedor;
+
     
     // Classe interna para informações de saúde
     @Setter

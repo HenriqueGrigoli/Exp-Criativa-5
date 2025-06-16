@@ -106,7 +106,7 @@ export default function CadastroFamiliaAcolhedora() {
         tempoResidencia: Number(rest.tempoResidencia),
         quartosDisponiveis: Number(rest.quartosDisponiveis),
         banheiros: Number(rest.banheiros),
-        rendaFamiliar: Number(rest.rendaFamiliar),
+        rendaFamiliar: String(rest.rendaFamiliar),
         pessoasDependentes: Number(rest.pessoasDependentes),
       };
 

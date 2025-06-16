@@ -1,10 +1,14 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Usuario;
-import com.example.demo.model.Imigrante;
-import com.example.demo.repository.UsuarioRepository;
-import com.example.demo.services.AcolhimentoService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -12,21 +16,27 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update; // Import adicionado
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.List;
-import java.util.UUID;
-import java.util.Optional;
+import com.example.demo.model.Imigrante;
+import com.example.demo.model.Usuario;
+import com.example.demo.repository.UsuarioRepository;
+import com.example.demo.services.AcolhimentoService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RestController
@@ -35,17 +45,14 @@ import java.util.Optional;
 public class UsuarioController {
 
     private final UsuarioRepository repository;
-    private final AcolhimentoService acolhimentoService;
     private final MongoTemplate mongoTemplate; // Adicionado para consultas mais complexas
     private final Path fileStorageLocation;
     private final ObjectMapper objectMapper;
 
     public UsuarioController(UsuarioRepository repository, 
-                           AcolhimentoService acolhimentoService,
                            MongoTemplate mongoTemplate,
                            ObjectMapper objectMapper) {
         this.repository = repository;
-        this.acolhimentoService = acolhimentoService;
         this.mongoTemplate = mongoTemplate;
         this.objectMapper = objectMapper;
         this.fileStorageLocation = Paths.get("uploads").toAbsolutePath().normalize();
@@ -140,18 +147,6 @@ public class UsuarioController {
     public ResponseEntity<List<Usuario>> listarAprovados() {
         List<Usuario> usuarios = repository.findByAprovado(true);
         return ResponseEntity.ok(usuarios);
-    }
-
-    // Novo endpoint para recomendar famílias acolhedoras
-    @GetMapping("/recomendar")
-    public ResponseEntity<Usuario> recomendarFamiliaAcolhedora(
-            @RequestParam int membros,
-            @RequestParam(required = false) List<String> idiomas) {
-        
-        Optional<Usuario> familiaOpt = acolhimentoService.recomendarMelhorFamilia(membros, idiomas, false);
-        
-        return familiaOpt.map(ResponseEntity::ok)
-                       .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Novo endpoint para atribuir família acolhedora a um imigrante

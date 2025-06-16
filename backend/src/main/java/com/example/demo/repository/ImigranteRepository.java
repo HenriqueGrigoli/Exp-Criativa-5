@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ImigranteRepository extends MongoRepository<Imigrante, String> {
@@ -29,4 +30,6 @@ public interface ImigranteRepository extends MongoRepository<Imigrante, String> 
     
     // Busca imigrantes por nome (contendo o termo, case insensitive)
     List<Imigrante> findByNomeCompletoContainingIgnoreCase(String nome);
+
+	List<Imigrante> findAllByFamiliaId(String idFamiliaImigrante);
 }

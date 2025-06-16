@@ -148,15 +148,10 @@ const handleDelete = async (id: string) => {
           onDeactivate={handleDeactivate}
           onDelete={handleDelete}  // <== passe handleDelete
           onPageChange={setCurrentPage}
+          fetchImigrantes={fetchImigrantes}
         />
 
-        <MatchTable
-            imigrantes={filteredImigrantes.filter(i => !i.familiaId)}
-            loading={loading}
-            currentPage={currentPageMatches}
-            matchesPerPage={matchesPerPage}
-            onPageChange={setCurrentPageMatches}
-        />
+
           <NovoCadastro onSuccess={handleCadastroSuccess} />
         </>
       )}

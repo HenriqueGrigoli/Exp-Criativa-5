@@ -221,6 +221,8 @@ export default function AdminDashboard() {
                   onActivate={handleActivate}
                   onDeactivate={handleDeactivate}
                   onPageChange={setCurrentPageImigrantes}
+                  fetchImigrantes={fetchImigrantes}
+                  onDelete={fetchImigrantes}  // <== passe handleDelete
                 />
                 <NovoCadastro onSuccess={fetchImigrantes} />
               </>

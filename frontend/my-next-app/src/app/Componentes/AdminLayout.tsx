@@ -1,33 +1,48 @@
 "use client";
 
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import AdminSidebar from './AdminSidebar';
 import AdminConfiguracoes from '../sections/AdminConfiguracoes';
 import AdminHome from '../sections/AdminHome';
 import AdminImigrantes from '../sections/AdminImigrantes';
 import AdminUsuarios from '../sections/AdminUsuarios';
 
-export default function AdminLayout() {
+interface AdminLayoutProps {
+  children: ReactNode;
+}
+
+
+export default function AdminLayout({ children }: AdminLayoutProps) {
   const [activeSection, setActiveSection] = useState('home');
 
   const renderSection = () => {
     switch (activeSection) {
       case 'home':
-        return <AdminHome />;
+        return (
+          <AdminHome />
+        );
       case 'usuarios':
-        return <AdminUsuarios />;
+        return (
+          <AdminUsuarios />
+        );
       case 'imigrantes':
-        return <AdminImigrantes />;
+        return (
+          <AdminImigrantes />
+        );
       case 'configuracoes':
-        return <AdminConfiguracoes />;
+        return (
+          <AdminConfiguracoes />
+        );
       default:
-        return <AdminHome />;
+        return (
+          <AdminHome />
+        );
     }
   };
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <AdminSidebar 
+      <AdminSidebar
         activeSection={activeSection}
         onSectionChange={setActiveSection}
       />

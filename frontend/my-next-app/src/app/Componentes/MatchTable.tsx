@@ -47,33 +47,32 @@ export default function MatchTable({
   useEffect(() => {
     if (familiasAcolhedoras.length > 0 && imigrantes.length > 0) {
       generateMatches();
+    }else {
+      setLoadingMatches(false);
     }
   }, [familiasAcolhedoras, imigrantes]);
 
   const generateMatches = async () => {
     setLoadingMatches(true);
     try {
-      const newMatches: Match[] = [];
+      let familiaAcolhedora: Match[] = [];
       
-      for (const imigrante of imigrantes) {
-        if (!imigrante.familiaId) {
-          const response = await fetch(
-            `http://localhost:8080/api/usuarios/recomendar?membros=${imigrante.familiaId?.length || 1}`
-          );
-          if (response.ok) {
-            const familiaAcolhedora: Usuario = await response.json();
-            if (familiaAcolhedora) {
-              newMatches.push({
-                familiaAcolhedora,
-                familiaImigrante: imigrante,
-                score: calculateMatchScore(familiaAcolhedora, imigrante)
-              });
-            }
-          }
-        }
+      const response = await fetch(
+        `http://localhost:8080/api/imigrantes/recomendar`
+      );
+      if (response.ok) {
+        familiaAcolhedora = await response.json();
+       /*  if (familiaAcolhedora) {
+          newMatches.push({
+            familiaAcolhedora,
+            familiaImigrante: imigrante,
+            score: calculateMatchScore(familiaAcolhedora, imigrante)
+          });
+        } */
+       
       }
 
-      setMatches(newMatches.sort((a, b) => b.score - a.score));
+      setMatches(familiaAcolhedora);
     } catch (err) {
       console.error("Erro ao gerar matches:", err);
     } finally {
@@ -148,9 +147,9 @@ const handleAssign = async (familiaAcolhedoraId: string, imigranteId: string) =>
                       <div className="text-sm text-gray-500">{match.familiaImigrante.paisOrigem}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{match.familiaAcolhedora.nomeCompleto}</div>
+                      <div className="text-sm text-gray-900">{match.familiaAcolhedora?.nomeCompleto}</div>
                       <div className="text-sm text-gray-500">
-                        {match.familiaAcolhedora.quartosDisponiveis} quartos, {match.familiaAcolhedora.banheiros} banheiros
+                        {match.familiaAcolhedora?.quartosDisponiveis} quartos, {match.familiaAcolhedora?.banheiros} banheiros
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">

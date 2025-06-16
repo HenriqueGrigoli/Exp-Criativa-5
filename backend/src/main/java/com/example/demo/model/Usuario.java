@@ -2,6 +2,7 @@ package com.example.demo.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -77,6 +78,9 @@ public class Usuario {
 
     @Field("aprovado")
     private boolean aprovado = false;
+    
+    @Transient
+    private Integer pontuacao;
 
     public Usuario(String nomeCompleto, String email, String telefone, String cpf,
                    String tipoMoradia, String tempoResidencia, String enderecoCompleto,

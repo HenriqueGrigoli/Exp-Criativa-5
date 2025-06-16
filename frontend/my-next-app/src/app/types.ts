@@ -31,6 +31,7 @@ export interface Usuario {
   // Outros campos que você pode precisar
   observacoes?: string;
   dataCadastro?: Date;
+  pontuacao?: number;
 }
 
 export interface Imigrante {
@@ -56,4 +57,6 @@ export interface Imigrante {
     alergias?: string[];
   };
   idiomasFalados: string[];
+  idUsuarioAcolhedor?: string;
+  usuarioAcolhedor?: string;
 }

@@ -1,14 +1,15 @@
 package com.example.demo.services;
 
-import com.example.demo.model.Usuario;
-import com.example.demo.repository.UsuarioRepository;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import com.example.demo.model.Imigrante;
+import com.example.demo.model.Usuario;
+import com.example.demo.repository.UsuarioRepository;
 
 @Service
 public class AcolhimentoService {
@@ -16,46 +17,44 @@ public class AcolhimentoService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Optional<Usuario> recomendarMelhorFamilia(int membrosImigrante, List<String> idiomasImigrante, boolean necessidadesEspeciais) {
+    public List<Usuario> recomendarMelhorFamilia(Imigrante imigrante) {
+    	
         // Get all families first (since we don't have findByAprovado)
-        List<Usuario> todasFamilias = usuarioRepository.findAll();
-        
-        // Filter approved families in memory
-        List<Usuario> familiasAprovadas = todasFamilias.stream()
-                .filter(Usuario::isAprovado)
-                .collect(Collectors.toList());
+        List<Usuario> familiasAprovadas = usuarioRepository.findByAprovado(true);
 
-        if (familiasAprovadas.isEmpty()) {
-            return Optional.empty();
-        }
+	     // Apply all other filters
+        List<Usuario> familiasFiltradas = familiasAprovadas.stream().map(f -> {f.setPontuacao(calcularPontuacao(f, imigrante)); return f;}).collect(Collectors.toList());
+        familiasFiltradas.sort(Comparator.comparingInt(Usuario::getPontuacao).reversed());
 
-        // Apply all other filters
-        List<Usuario> familiasFiltradas = familiasAprovadas.stream()
-                .filter(f -> f.getAntecedentesCriminais() != null && 
-                            f.getAntecedentesCriminais().equalsIgnoreCase("nao"))
-                .filter(f -> f.getQuartosDisponiveis() != null && 
-                            f.getQuartosDisponiveis() >= calcularQuartosNecessarios(membrosImigrante))
-                .filter(f -> f.getBanheiros() >= calcularBanheirosNecessarios(membrosImigrante))
-                .filter(f -> rendaSuficiente(f.getRendaFamiliar(), 
-                                           f.getPessoasDependentes(), 
-                                           membrosImigrante))
-                .collect(Collectors.toList());
+       return familiasFiltradas;
 
-        if (familiasFiltradas.isEmpty()) {
-            return Optional.empty();
-        }
-
-        // Sorting logic remains the same
-        return familiasFiltradas.stream()
-                .sorted(Comparator
-                        .comparingInt(Usuario::getQuartosDisponiveis).reversed()
-                        .thenComparing(f -> -calcularCompatibilidadeIdiomas(f.getIdiomasFalados(), idiomasImigrante))
-                        .thenComparingInt(Usuario::getBanheiros).reversed()
-                        .thenComparing(this::parseRenda).reversed()
-                        .thenComparing(f -> f.getExperienciaPrevia() != null && 
-                                           !f.getExperienciaPrevia().isEmpty() ? 1 : 0).reversed()
-                )
-                .findFirst();
+    }
+    
+    private Integer calcularPontuacao(Usuario usuario, Imigrante imigrante) {
+    	Integer pontuacao = 0;
+		List<String> idiomasImigrante =  imigrante.getIdiomas();
+		boolean necessidadesEspeciais = (imigrante.getNecessidadesEspeciais() == null || imigrante.getNecessidadesEspeciais().size() ==0);
+		
+    	
+    	int membrosImigrante =  imigrante.getFamiliaId().length();
+    	
+    	if (usuario.getQuartosDisponiveis() != null && 
+    			usuario.getQuartosDisponiveis() >= calcularQuartosNecessarios(membrosImigrante)) {
+    		pontuacao += 20;
+    	}
+    	
+    	if(usuario.getBanheiros() >= calcularBanheirosNecessarios(membrosImigrante)) {
+    		pontuacao += 20;
+    	}
+    	
+    	if( rendaSuficiente(usuario.getRendaFamiliar(), 
+    			usuario.getPessoasDependentes(), 
+                membrosImigrante)) {
+    		pontuacao += 20;
+    	}
+    	
+    	
+    	return pontuacao;
     }
 
     // Rest of the helper methods remain the same...
@@ -69,7 +68,7 @@ public class AcolhimentoService {
 
     private boolean rendaSuficiente(String rendaStr, int dependentes, int membrosImigrantes) {
         try {
-            double renda = parseRenda(rendaStr);
+            double renda = (rendaStr==null?0:parseRenda(rendaStr));
             double rendaMinima = 2000 + (dependentes * 500) + (membrosImigrantes * 800);
             return renda >= rendaMinima;
         } catch (NumberFormatException e) {
